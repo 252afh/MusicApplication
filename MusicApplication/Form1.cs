@@ -16,5 +16,23 @@ namespace MusicApplication
         {
             InitializeComponent();
         }
+
+        private void MouseEnter(object sender, EventArgs e)
+        {
+            Button[] buttonList = new Button[]
+            {
+                HomePageButton,
+                LocalButton,
+                APIButton,
+                OptionButton
+            };
+            foreach (Button selectedButton in buttonList)
+            {
+                if (sender.Equals(selectedButton))
+                {
+                    selectedButton.Image = Properties.Resources.homepage_yellow;
+                }
+            }
+        }
     }
 }
