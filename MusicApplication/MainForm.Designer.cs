@@ -1,6 +1,6 @@
 ﻿namespace MusicApplication
 {
-    partial class Form1
+    partial class MainForm
     {
         /// <summary>
         /// Required designer variable.
@@ -29,18 +29,37 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.HomePageButton = new System.Windows.Forms.Button();
             this.LocalButton = new System.Windows.Forms.Button();
             this.APIButton = new System.Windows.Forms.Button();
             this.OptionButton = new System.Windows.Forms.Button();
+            this.AddToLocalLibBtn = new System.Windows.Forms.Button();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.tableLayoutPanel1);
             this.panel1.Location = new System.Drawing.Point(12, 89);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1142, 360);
             this.panel1.TabIndex = 0;
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 3;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 44.96124F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 55.03876F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 622F));
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(4, 0);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 3;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1138, 360);
+            this.tableLayoutPanel1.TabIndex = 0;
             // 
             // HomePageButton
             // 
@@ -51,7 +70,10 @@
             this.HomePageButton.Size = new System.Drawing.Size(136, 41);
             this.HomePageButton.TabIndex = 1;
             this.HomePageButton.UseVisualStyleBackColor = true;
+            this.HomePageButton.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MousePressed);
             this.HomePageButton.MouseEnter += new System.EventHandler(this.MouseEnter);
+            this.HomePageButton.MouseLeave += new System.EventHandler(this.MouseExit);
+            this.HomePageButton.MouseUp += new System.Windows.Forms.MouseEventHandler(this.MouseUnClicked);
             // 
             // LocalButton
             // 
@@ -62,7 +84,9 @@
             this.LocalButton.Size = new System.Drawing.Size(136, 41);
             this.LocalButton.TabIndex = 2;
             this.LocalButton.UseVisualStyleBackColor = true;
+            this.LocalButton.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MousePressed);
             this.LocalButton.MouseEnter += new System.EventHandler(this.MouseEnter);
+            this.LocalButton.MouseLeave += new System.EventHandler(this.MouseExit);
             // 
             // APIButton
             // 
@@ -73,7 +97,9 @@
             this.APIButton.Size = new System.Drawing.Size(136, 41);
             this.APIButton.TabIndex = 3;
             this.APIButton.UseVisualStyleBackColor = true;
+            this.APIButton.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MousePressed);
             this.APIButton.MouseEnter += new System.EventHandler(this.MouseEnter);
+            this.APIButton.MouseLeave += new System.EventHandler(this.MouseExit);
             // 
             // OptionButton
             // 
@@ -84,20 +110,34 @@
             this.OptionButton.Size = new System.Drawing.Size(136, 41);
             this.OptionButton.TabIndex = 4;
             this.OptionButton.UseVisualStyleBackColor = true;
+            this.OptionButton.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MousePressed);
             this.OptionButton.MouseEnter += new System.EventHandler(this.MouseEnter);
+            this.OptionButton.MouseLeave += new System.EventHandler(this.MouseExit);
             // 
-            // Form1
+            // AddToLocalLibBtn
+            // 
+            this.AddToLocalLibBtn.Location = new System.Drawing.Point(12, 2);
+            this.AddToLocalLibBtn.Name = "AddToLocalLibBtn";
+            this.AddToLocalLibBtn.Size = new System.Drawing.Size(75, 23);
+            this.AddToLocalLibBtn.TabIndex = 5;
+            this.AddToLocalLibBtn.Text = "Add to local library";
+            this.AddToLocalLibBtn.UseVisualStyleBackColor = true;
+            this.AddToLocalLibBtn.Click += new System.EventHandler(this.AddToLocalLibBtn_Click);
+            // 
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1166, 461);
+            this.Controls.Add(this.AddToLocalLibBtn);
             this.Controls.Add(this.OptionButton);
             this.Controls.Add(this.APIButton);
             this.Controls.Add(this.LocalButton);
             this.Controls.Add(this.HomePageButton);
             this.Controls.Add(this.panel1);
-            this.Name = "Form1";
+            this.Name = "MainForm";
             this.Text = "Form1";
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -110,6 +150,8 @@
         private System.Windows.Forms.Button LocalButton;
         private System.Windows.Forms.Button APIButton;
         private System.Windows.Forms.Button OptionButton;
+        private System.Windows.Forms.Button AddToLocalLibBtn;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
     }
 }
 
