@@ -28,38 +28,30 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
+            "0",
+            "ExampleTitle",
+            "Blink182",
+            "Rock",
+            "20/07/2017",
+            "3.45",
+            "4",
+            "Playlist"}, -1);
             this.HomePageButton = new System.Windows.Forms.Button();
             this.LocalButton = new System.Windows.Forms.Button();
             this.APIButton = new System.Windows.Forms.Button();
             this.OptionButton = new System.Windows.Forms.Button();
             this.AddToLocalLibBtn = new System.Windows.Forms.Button();
-            this.panel1.SuspendLayout();
+            this.listView1 = new System.Windows.Forms.ListView();
+            this.Order = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Title = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Artist = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Album = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Date = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Length = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Plays = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Playlist = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.tableLayoutPanel1);
-            this.panel1.Location = new System.Drawing.Point(12, 89);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1142, 360);
-            this.panel1.TabIndex = 0;
-            // 
-            // tableLayoutPanel1
-            // 
-            this.tableLayoutPanel1.ColumnCount = 3;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 44.96124F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 55.03876F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 622F));
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(4, 0);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 3;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1138, 360);
-            this.tableLayoutPanel1.TabIndex = 0;
             // 
             // HomePageButton
             // 
@@ -124,34 +116,96 @@
             this.AddToLocalLibBtn.UseVisualStyleBackColor = true;
             this.AddToLocalLibBtn.Click += new System.EventHandler(this.AddToLocalLibBtn_Click);
             // 
+            // listView1
+            // 
+            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.Order,
+            this.Title,
+            this.Artist,
+            this.Album,
+            this.Date,
+            this.Length,
+            this.Plays,
+            this.Playlist});
+            this.listView1.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
+            listViewItem1});
+            this.listView1.Location = new System.Drawing.Point(80, 147);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(1035, 241);
+            this.listView1.Sorting = System.Windows.Forms.SortOrder.Descending;
+            this.listView1.TabIndex = 6;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.View = System.Windows.Forms.View.Details;
+            // 
+            // Order
+            // 
+            this.Order.Text = "Order";
+            this.Order.Width = 86;
+            // 
+            // Title
+            // 
+            this.Title.Text = "Title";
+            this.Title.Width = 86;
+            // 
+            // Artist
+            // 
+            this.Artist.Text = "Artist";
+            this.Artist.Width = 88;
+            // 
+            // Album
+            // 
+            this.Album.Text = "Genre";
+            this.Album.Width = 87;
+            // 
+            // Date
+            // 
+            this.Date.Text = "Date";
+            // 
+            // Length
+            // 
+            this.Length.Text = "Length";
+            // 
+            // Plays
+            // 
+            this.Plays.Text = "Plays";
+            // 
+            // Playlist
+            // 
+            this.Playlist.Text = "Playlist";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1166, 461);
+            this.Controls.Add(this.listView1);
             this.Controls.Add(this.AddToLocalLibBtn);
             this.Controls.Add(this.OptionButton);
             this.Controls.Add(this.APIButton);
             this.Controls.Add(this.LocalButton);
             this.Controls.Add(this.HomePageButton);
-            this.Controls.Add(this.panel1);
             this.Name = "MainForm";
             this.Text = "Form1";
-            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button HomePageButton;
         private System.Windows.Forms.Button LocalButton;
         private System.Windows.Forms.Button APIButton;
         private System.Windows.Forms.Button OptionButton;
         private System.Windows.Forms.Button AddToLocalLibBtn;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ColumnHeader Order;
+        private System.Windows.Forms.ColumnHeader Title;
+        private System.Windows.Forms.ColumnHeader Artist;
+        private System.Windows.Forms.ColumnHeader Album;
+        private System.Windows.Forms.ColumnHeader Date;
+        private System.Windows.Forms.ColumnHeader Length;
+        private System.Windows.Forms.ColumnHeader Plays;
+        private System.Windows.Forms.ColumnHeader Playlist;
     }
 }
 
