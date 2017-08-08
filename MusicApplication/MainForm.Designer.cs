@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
             "0",
             "ExampleTitle",
@@ -51,6 +52,10 @@
             this.Length = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Plays = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Playlist = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.BindingToDatabase = new System.Windows.Forms.BindingSource(this.components);
+            this.localMusicDBDataSet = new MusicApplication.LocalMusicDBDataSet();
+            ((System.ComponentModel.ISupportInitialize)(this.BindingToDatabase)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.localMusicDBDataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // HomePageButton
@@ -173,6 +178,16 @@
             // 
             this.Playlist.Text = "Playlist";
             // 
+            // BindingToDatabase
+            // 
+            this.BindingToDatabase.DataSource = this.localMusicDBDataSet;
+            this.BindingToDatabase.Position = 0;
+            // 
+            // localMusicDBDataSet
+            // 
+            this.localMusicDBDataSet.DataSetName = "LocalMusicDBDataSet";
+            this.localMusicDBDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -185,7 +200,9 @@
             this.Controls.Add(this.LocalButton);
             this.Controls.Add(this.HomePageButton);
             this.Name = "MainForm";
-            this.Text = "Form1";
+            this.Text = "MusicPlayer";
+            ((System.ComponentModel.ISupportInitialize)(this.BindingToDatabase)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.localMusicDBDataSet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -206,6 +223,8 @@
         private System.Windows.Forms.ColumnHeader Length;
         private System.Windows.Forms.ColumnHeader Plays;
         private System.Windows.Forms.ColumnHeader Playlist;
+        private System.Windows.Forms.BindingSource BindingToDatabase;
+        private LocalMusicDBDataSet localMusicDBDataSet;
     }
 }
 

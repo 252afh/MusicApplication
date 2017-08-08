@@ -17,6 +17,7 @@ namespace MusicApplication
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new MainForm());
+            DatabaseConn DatabaseObj = new DatabaseConn();
         }
     }
 }

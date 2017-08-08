@@ -100,11 +100,9 @@ namespace MusicApplication
             }
         }
 
-        
-
         private void AddToLocalLibBtn_Click(object sender, EventArgs e)
         {
-
+            
         }
     }
 }
