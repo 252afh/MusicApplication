@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
             "0",
             "ExampleTitle",
@@ -52,10 +51,7 @@
             this.Length = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Plays = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Playlist = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.BindingToDatabase = new System.Windows.Forms.BindingSource(this.components);
-            this.localMusicDBDataSet = new MusicApplication.LocalMusicDBDataSet();
-            ((System.ComponentModel.ISupportInitialize)(this.BindingToDatabase)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.localMusicDBDataSet)).BeginInit();
+            this.testBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // HomePageButton
@@ -178,21 +174,19 @@
             // 
             this.Playlist.Text = "Playlist";
             // 
-            // BindingToDatabase
+            // testBox
             // 
-            this.BindingToDatabase.DataSource = this.localMusicDBDataSet;
-            this.BindingToDatabase.Position = 0;
-            // 
-            // localMusicDBDataSet
-            // 
-            this.localMusicDBDataSet.DataSetName = "LocalMusicDBDataSet";
-            this.localMusicDBDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            this.testBox.Location = new System.Drawing.Point(161, 418);
+            this.testBox.Name = "testBox";
+            this.testBox.Size = new System.Drawing.Size(100, 20);
+            this.testBox.TabIndex = 7;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1166, 461);
+            this.Controls.Add(this.testBox);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.AddToLocalLibBtn);
             this.Controls.Add(this.OptionButton);
@@ -201,8 +195,6 @@
             this.Controls.Add(this.HomePageButton);
             this.Name = "MainForm";
             this.Text = "MusicPlayer";
-            ((System.ComponentModel.ISupportInitialize)(this.BindingToDatabase)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.localMusicDBDataSet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -223,8 +215,7 @@
         private System.Windows.Forms.ColumnHeader Length;
         private System.Windows.Forms.ColumnHeader Plays;
         private System.Windows.Forms.ColumnHeader Playlist;
-        private System.Windows.Forms.BindingSource BindingToDatabase;
-        private LocalMusicDBDataSet localMusicDBDataSet;
+        private System.Windows.Forms.TextBox testBox;
     }
 }
 

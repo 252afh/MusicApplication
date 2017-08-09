@@ -82,11 +82,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DatabaseConn.cs" />
-    <Compile Include="LocalMusicDBDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>LocalMusicDBDataSet.xsd</DependentUpon>
-    </Compile>
+    <Compile Include="Enums\ButtonsEnums.cs" />
+    <Compile Include="Enums\CursorEnums.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -108,17 +105,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="LocalMusicDBDataSet.xsc">
-      <DependentUpon>LocalMusicDBDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="LocalMusicDBDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>LocalMusicDBDataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="LocalMusicDBDataSet.xss">
-      <DependentUpon>LocalMusicDBDataSet.xsd</DependentUpon>
-    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -141,15 +127,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\homepage yellow.jpeg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="LocalMusicDB.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="LocalMusicDB_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DependentUpon>LocalMusicDB.mdf</DependentUpon>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">

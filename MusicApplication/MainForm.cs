@@ -7,45 +7,37 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MusicApplication.Enums;
 
 namespace MusicApplication
-{
+{ 
     public partial class MainForm : Form
     {
-        enum buttons
-        {
-            clicked,
-            unclicked
-        };
-
-        enum cursors
-        {
-            entered,
-            left
-        }
+        DatabaseConn dbConn;
         public MainForm()
         {
             InitializeComponent();
+            dbConn = new DatabaseConn();
         }
 
         private void MouseEnter(object sender, EventArgs e)
         {
-            CursorActions(sender, e, (int)cursors.entered);
+            CursorActions(sender, e, (int)CursorEnums.hovered);
         }
 
         private void MouseExit(object sender, EventArgs e)
         {
-            CursorActions(sender, e, (int)cursors.left);
+            CursorActions(sender, e, (int)CursorEnums.unhovered);
         }
 
         private void MouseUnClicked(object sender, MouseEventArgs e)
         {
-            MouseActions(sender, e, (int)buttons.unclicked);
+            MouseActions(sender, e, (int)buttonEnums.unclicked);
         }
 
         private void MousePressed(object sender, MouseEventArgs e)
         {
-            MouseActions(sender, e, (int)buttons.clicked);
+            MouseActions(sender, e, (int)buttonEnums.clicked);
         }
 
         private void MouseActions(object sender, MouseEventArgs e, int num)
@@ -102,7 +94,11 @@ namespace MusicApplication
 
         private void AddToLocalLibBtn_Click(object sender, EventArgs e)
         {
-            
+            dbConn.AddSongToTable("titleofsong", "artistofsong", "albumofsong", "playlistofsong", 4.45, "rock", 3);
+
+            string printed = dbConn.GetSongsFromTable();
+
+            testBox.Text = printed;
         }
     }
 }
