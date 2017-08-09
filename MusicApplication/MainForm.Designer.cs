@@ -51,6 +51,7 @@
             this.Length = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Plays = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Playlist = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.testBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // HomePageButton
@@ -173,11 +174,19 @@
             // 
             this.Playlist.Text = "Playlist";
             // 
+            // testBox
+            // 
+            this.testBox.Location = new System.Drawing.Point(161, 418);
+            this.testBox.Name = "testBox";
+            this.testBox.Size = new System.Drawing.Size(100, 20);
+            this.testBox.TabIndex = 7;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1166, 461);
+            this.Controls.Add(this.testBox);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.AddToLocalLibBtn);
             this.Controls.Add(this.OptionButton);
@@ -185,7 +194,7 @@
             this.Controls.Add(this.LocalButton);
             this.Controls.Add(this.HomePageButton);
             this.Name = "MainForm";
-            this.Text = "Form1";
+            this.Text = "MusicPlayer";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -206,6 +215,7 @@
         private System.Windows.Forms.ColumnHeader Length;
         private System.Windows.Forms.ColumnHeader Plays;
         private System.Windows.Forms.ColumnHeader Playlist;
+        private System.Windows.Forms.TextBox testBox;
     }
 }
 
