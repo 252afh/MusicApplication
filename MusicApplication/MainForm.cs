@@ -6,7 +6,9 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 using System.Windows.Forms;
+using Microsoft.MediaPlayer.Interop;
 using MusicApplication.Enums;
 
 namespace MusicApplication
@@ -94,11 +96,40 @@ namespace MusicApplication
 
         private void AddToLocalLibBtn_Click(object sender, EventArgs e)
         {
-            dbConn.AddSongToTable("titleofsong", "artistofsong", "albumofsong", "playlistofsong", 4.45, "rock", 3);
+            //dbConn.AddSongToTable("titleofsong", "artistofsong", "albumofsong", "playlistofsong", 4.45, "rock", 3);
 
-            string printed = dbConn.GetSongsFromTable();
+            //string printed = dbConn.GetSongsFromTable();
 
-            testBox.Text = printed;
+            //testBox.Text = printed;
+
+            openFileDialogLocal.InitialDirectory = "c://"; //sets initial directory
+            openFileDialogLocal.Filter = "Allowed types (.wmv,.mp3)|*.wmv;*.mp3|Video (.wmv)|*.wmv|Music(.mp3)|*.mp3|ALL Files(*.*)|*.*"; // allowed file types
+            openFileDialogLocal.FilterIndex = 1;
+            DialogResult result = openFileDialogLocal.ShowDialog();
+            string filePath = openFileDialogLocal.FileName;
+            string artist = openFileDialogLocal.SafeFileName; //configure file dialog
+            string extension = Path.GetExtension(filePath); //gets file extension
+
+            WindowsMediaPlayer winmp = new WindowsMediaPlayer(); //plays the wmp
+            winmp.URL = filePath;
+            winmp.controls.play();
+
+            double duration;
+            IWMPMedia mediainfo = winmp.newMedia(filePath); //gets file length for wmp
+            duration = mediainfo.duration;
+
+
+
+        }
+
+        private void playMedia(string filePath)
+        {
+            
+        }
+
+        private void openFileDialogLocal_FileOk(object sender, CancelEventArgs e)
+        {
+
         }
     }
 }

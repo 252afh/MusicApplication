@@ -11,42 +11,58 @@ namespace MusicApplication
     class DatabaseConn
     {
         public static SQLiteConnection connection;
-        static string createTableQuery = "CREATE TABLE IF NOT EXISTS LocalMusicTable (" +
-            "Id int PRIMARY KEY," +
-            "Title VARCHAR(20)," +
-            "Artist VARCHAR(20)," +
-            "Album VARCHAR(20)," +
-            "PlayList VARCHAR(50)" +
-            "Length double" +
-            "Genre VARCHAR(20)" +
-            "Plays int)";
 
         public DatabaseConn()
         {
-            connection = new SQLiteConnection("Data Source=database.sqlite3");
+            if (!File.Exists("./LocalDatabase.sqlite3"))
+            {
+                SQLiteConnection.CreateFile("LocalDatabase.sqlite3"); 
+            }
 
-            //if (!File.Exists("./LocalDatabase.sqlite3"))
-            //{
-                SQLiteConnection.CreateFile("LocalDatabase.sqlite3");
-            //}
-
+            connection = new SQLiteConnection("Data Source=LocalDatabase.sqlite3");
+            
             createTable();
-           
         }
 
         public static void createTable()
         {
+            string createTableQuery = "CREATE TABLE IF NOT EXISTS LocalMusicTable (" +
+            "Id int PRIMARY KEY," +
+            "Title VARCHAR(20)," +
+            "Artist VARCHAR(20)," +
+            "Album VARCHAR(20)," +
+            "PlayList VARCHAR(50)," +
+            "Length real," +
+            "Genre VARCHAR(20)," +
+            "Plays int," +
+            "FileExtension VARCHAR(10))";
             SQLiteCommand createTableCommand = new SQLiteCommand(createTableQuery, connection);
             connection.Open();
             createTableCommand.ExecuteNonQuery();
             connection.Close();
         }
 
-        public void AddSongToTable(string title, string artist, string album, string playlist, double length, string genre, int plays)
+        public void AddSongToTable(string title, string artist, string album, string playlist, double length, string genre, int plays, string fileExtension)
         {
-            string addSongQuery = ($"INSERT INTO LocalMusicTable (Title, Artist, Album, Playlist, Length, Genre, Plays) values ({title}, {artist}, {album}, {playlist}, {length}, {genre}, {plays})");
-            SQLiteCommand addSongToTableCommand = new SQLiteCommand(addSongQuery, connection);
             connection.Open();
+            var paramTitle = new SQLiteParameter("@paramTitle") { Value = title };
+            var paramArtist = new SQLiteParameter("@paramArtist") { Value = artist };
+            var paramAlbum = new SQLiteParameter("@paramAlbum") { Value = album };
+            var paramPlaylist = new SQLiteParameter("@paramPlaylist") { Value = playlist };
+            var paramLength = new SQLiteParameter("@paramLength") { Value = length };
+            var paramGenre = new SQLiteParameter("@paramGenre") { Value = genre };
+            var paramPlays = new SQLiteParameter("@paramPlays") { Value = plays };
+            var paramExtension = new SQLiteParameter("@paramExtension") { Value = fileExtension };
+            SQLiteCommand addSongToTableCommand = new SQLiteCommand("INSERT INTO LocalMusicTable (Title, Artist, Album, Playlist, Length, Genre, Plays)" + " VALUES (@paramTitle, @paramArtist, @paramAlbum, @paramPlaylist, @paramLength, @paramGenre, @paramPlays, @paramExtension)", connection);
+            addSongToTableCommand.CommandType = System.Data.CommandType.Text;
+            addSongToTableCommand.Parameters.Add(paramTitle);
+            addSongToTableCommand.Parameters.Add(paramArtist);
+            addSongToTableCommand.Parameters.Add(paramAlbum);
+            addSongToTableCommand.Parameters.Add(paramPlaylist);
+            addSongToTableCommand.Parameters.Add(paramLength);
+            addSongToTableCommand.Parameters.Add(paramGenre);
+            addSongToTableCommand.Parameters.Add(paramPlays);
+            addSongToTableCommand.Parameters.Add(paramExtension);
             addSongToTableCommand.ExecuteNonQuery();
             connection.Close();
         }

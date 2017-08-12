@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem(new string[] {
             "0",
             "ExampleTitle",
             "Blink182",
@@ -37,6 +37,7 @@
             "3.45",
             "4",
             "Playlist"}, -1);
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.HomePageButton = new System.Windows.Forms.Button();
             this.LocalButton = new System.Windows.Forms.Button();
             this.APIButton = new System.Windows.Forms.Button();
@@ -52,6 +53,9 @@
             this.Plays = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Playlist = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.testBox = new System.Windows.Forms.TextBox();
+            this.openFileDialogLocal = new System.Windows.Forms.OpenFileDialog();
+            this.axWindowsMediaPlayer1 = new AxWMPLib.AxWindowsMediaPlayer();
+            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).BeginInit();
             this.SuspendLayout();
             // 
             // HomePageButton
@@ -129,7 +133,7 @@
             this.Plays,
             this.Playlist});
             this.listView1.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1});
+            listViewItem3});
             this.listView1.Location = new System.Drawing.Point(80, 147);
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(1035, 241);
@@ -181,11 +185,28 @@
             this.testBox.Size = new System.Drawing.Size(100, 20);
             this.testBox.TabIndex = 7;
             // 
+            // openFileDialogLocal
+            // 
+            this.openFileDialogLocal.FileName = "ImportedMusic";
+            this.openFileDialogLocal.Multiselect = true;
+            this.openFileDialogLocal.Title = "Add file to local library";
+            this.openFileDialogLocal.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialogLocal_FileOk);
+            // 
+            // axWindowsMediaPlayer1
+            // 
+            this.axWindowsMediaPlayer1.Enabled = true;
+            this.axWindowsMediaPlayer1.Location = new System.Drawing.Point(346, 79);
+            this.axWindowsMediaPlayer1.Name = "axWindowsMediaPlayer1";
+            this.axWindowsMediaPlayer1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWindowsMediaPlayer1.OcxState")));
+            this.axWindowsMediaPlayer1.Size = new System.Drawing.Size(438, 62);
+            this.axWindowsMediaPlayer1.TabIndex = 8;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1166, 461);
+            this.Controls.Add(this.axWindowsMediaPlayer1);
             this.Controls.Add(this.testBox);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.AddToLocalLibBtn);
@@ -195,6 +216,7 @@
             this.Controls.Add(this.HomePageButton);
             this.Name = "MainForm";
             this.Text = "MusicPlayer";
+            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -216,6 +238,8 @@
         private System.Windows.Forms.ColumnHeader Plays;
         private System.Windows.Forms.ColumnHeader Playlist;
         private System.Windows.Forms.TextBox testBox;
+        private System.Windows.Forms.OpenFileDialog openFileDialogLocal;
+        private AxWMPLib.AxWindowsMediaPlayer axWindowsMediaPlayer1;
     }
 }
 
