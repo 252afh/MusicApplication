@@ -96,38 +96,79 @@ namespace MusicApplication
 
         private void AddToLocalLibBtn_Click(object sender, EventArgs e)
         {
-            //dbConn.AddSongToTable("titleofsong", "artistofsong", "albumofsong", "playlistofsong", 4.45, "rock", 3);
-
-            //string printed = dbConn.GetSongsFromTable();
-
-            //testBox.Text = printed;
-
             openFileDialogLocal.InitialDirectory = "c://"; //sets initial directory
             openFileDialogLocal.Filter = "Allowed types (.wmv,.mp3)|*.wmv;*.mp3|Video (.wmv)|*.wmv|Music(.mp3)|*.mp3|ALL Files(*.*)|*.*"; // allowed file types
             openFileDialogLocal.FilterIndex = 1;
             DialogResult result = openFileDialogLocal.ShowDialog();
             string filePath = openFileDialogLocal.FileName;
-            string artist = openFileDialogLocal.SafeFileName; //configure file dialog
+            string title = openFileDialogLocal.SafeFileName;  //configure file dialog
+            string artist = null;
+            string album = null;
+            string playlist = null;
+            double length = 0;
+            string genre = null;
+            int plays = 0;
+            bool isAdded = false;
             string extension = Path.GetExtension(filePath); //gets file extension
+            switch (extension)
+            {
+                case ".wmv":
+                    WindowsMediaPlayer winmp = new WindowsMediaPlayer(); // creates a WindowsMediaPlayer instance
+                    IWMPMedia mediainfo = winmp.newMedia(filePath); //gets file length for wmp
+                    length = mediainfo.duration;
+                    dbConn.AddSongToTable(title, artist = null, album = null, playlist = null, length, genre = null, plays, extension, filePath);
+                    isAdded = true;
+                    break;
+                default:
+                    //MessageBox.Show("Error accepting that file type, please try again", "Error importing file to local music");
+                    //openFileDialogLocal.Dispose();
+                    break;
+            }
 
-            WindowsMediaPlayer winmp = new WindowsMediaPlayer(); //plays the wmp
-            winmp.URL = filePath;
-            winmp.controls.play();
+            if (isAdded)
+            {
+                ListViewItem itemToAdd = new ListViewItem();
+                ListViewItem.ListViewSubItem toAddTitle, toAddArtist = null, toAddAlbum = null, toAddPlaylist = null, toAddLength = null, toAddGenre = null, toAddPlays = null, toAddExtension = null, toAddPath = null;
 
-            double duration;
-            IWMPMedia mediainfo = winmp.newMedia(filePath); //gets file length for wmp
-            duration = mediainfo.duration;
+                ListViewItem.ListViewSubItem[] subItems = new ListViewItem.ListViewSubItem[9]
+                {
+                    toAddTitle = new ListViewItem.ListViewSubItem(),
+                    toAddArtist = new ListViewItem.ListViewSubItem(),
+                    toAddAlbum = new ListViewItem.ListViewSubItem(),
+                    toAddPlaylist = new ListViewItem.ListViewSubItem(),
+                    toAddLength = new ListViewItem.ListViewSubItem(),
+                    toAddGenre = new ListViewItem.ListViewSubItem(),
+                    toAddPlays = new ListViewItem.ListViewSubItem(),
+                    toAddExtension = new ListViewItem.ListViewSubItem(),
+                    toAddPath = new ListViewItem.ListViewSubItem()
+                };
 
+                toAddTitle.Text = title;
+                toAddArtist.Text = artist;
+                toAddAlbum.Text = album;
+                toAddPlaylist.Text = playlist;
+                toAddLength.Text = Math.Round(length,2).ToString();
+                toAddGenre.Text = genre;
+                toAddPlays.Text = plays.ToString();
+                toAddExtension.Text = extension;
+                toAddPath.Text = filePath;
+                itemToAdd.Text = (localMusicListView.Items.Count+1).ToString();
 
+                itemToAdd.SubItems.AddRange(subItems);
+                localMusicListView.Items.Add(itemToAdd);
+                
+                //updateTable();
+            }
 
+            openFileDialogLocal.Dispose();
         }
 
-        private void playMedia(string filePath)
+        private void sort(int column, bool ascending)
         {
-            
+
         }
 
-        private void openFileDialogLocal_FileOk(object sender, CancelEventArgs e)
+        private void updateTable()
         {
 
         }

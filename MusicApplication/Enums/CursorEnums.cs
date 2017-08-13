@@ -8,7 +8,7 @@ namespace MusicApplication.Enums
 {
     enum CursorEnums
     {
-        hovered = 1,
-        unhovered = 2
+        hovered = 0,
+        unhovered = 1
     };
 }
