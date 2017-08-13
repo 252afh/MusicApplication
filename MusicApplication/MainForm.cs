@@ -125,6 +125,8 @@ namespace MusicApplication
                     break;
             }
 
+            dbConn.GetSongsFromTable("boop");
+
             if (isAdded)
             {
                 ListViewItem itemToAdd = new ListViewItem();
@@ -163,14 +165,14 @@ namespace MusicApplication
             openFileDialogLocal.Dispose();
         }
 
-        private void sort(int column, bool ascending)
+        private void updateTable()
         {
 
         }
 
-        private void updateTable()
+        private void button1_Click(object sender, EventArgs e)
         {
-
+            dbConn.dropTable();
         }
     }
 }
