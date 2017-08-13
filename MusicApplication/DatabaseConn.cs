@@ -24,10 +24,19 @@ namespace MusicApplication
             createTable();
         }
 
+        public void dropTable()
+        {
+            string dropQuery = "DROP TABLE LocalMusicTable";
+            SQLiteCommand dropTableCommand = new SQLiteCommand(dropQuery, connection);
+            connection.Open();
+            dropTableCommand.ExecuteNonQuery();
+            connection.Close();
+        }
+
         public static void createTable()
         {
             string createTableQuery = "CREATE TABLE IF NOT EXISTS LocalMusicTable (" +
-            "Id int PRIMARY KEY," +
+            "Id INTEGER PRIMARY KEY," +
             "Title VARCHAR(20)," +
             "Artist VARCHAR(20)," +
             "Album VARCHAR(20)," +
@@ -71,14 +80,25 @@ namespace MusicApplication
             connection.Close();
         }
 
-        public void getSongsFromTable()
+        public void GetSongsFromTable()
         {
             //getSongsFromTable(order, true);
         }
 
-        public string GetSongsFromTable(string column, bool ascending)
+        private int getRowCount()
         {
-            string getFromTable = ("SELECT * FROM LocalMusicTable ORDER BY" + column);
+            string countQuery = ("SELECT COUNT(Id)" + (" FROM LocalMusicTable"));
+            SQLiteCommand getRowCount = new SQLiteCommand(countQuery, connection);
+            connection.Open();
+            int count = Convert.ToInt32(getRowCount.ExecuteScalar());
+            connection.Close();
+            return count;
+        }
+
+        public string GetSongsFromTable(string column)
+        {
+            int rowCount = getRowCount();
+            string getFromTable = ("SELECT * FROM LocalMusicTable");
             SQLiteCommand getFromTableCommand = new SQLiteCommand(getFromTable, connection);
             connection.Open();
             SQLiteDataReader reader = getFromTableCommand.ExecuteReader();
