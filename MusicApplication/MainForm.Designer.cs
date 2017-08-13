@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem(new string[] {
-            "0",
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
+            "1",
             "ExampleTitle",
             "Blink182",
             "Rock",
@@ -43,7 +43,7 @@
             this.APIButton = new System.Windows.Forms.Button();
             this.OptionButton = new System.Windows.Forms.Button();
             this.AddToLocalLibBtn = new System.Windows.Forms.Button();
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.localMusicListView = new System.Windows.Forms.ListView();
             this.Order = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Title = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Artist = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -52,7 +52,6 @@
             this.Length = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Plays = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Playlist = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.testBox = new System.Windows.Forms.TextBox();
             this.openFileDialogLocal = new System.Windows.Forms.OpenFileDialog();
             this.axWindowsMediaPlayer1 = new AxWMPLib.AxWindowsMediaPlayer();
             ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).BeginInit();
@@ -121,9 +120,9 @@
             this.AddToLocalLibBtn.UseVisualStyleBackColor = true;
             this.AddToLocalLibBtn.Click += new System.EventHandler(this.AddToLocalLibBtn_Click);
             // 
-            // listView1
+            // localMusicListView
             // 
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.localMusicListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.Order,
             this.Title,
             this.Artist,
@@ -132,15 +131,15 @@
             this.Length,
             this.Plays,
             this.Playlist});
-            this.listView1.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem3});
-            this.listView1.Location = new System.Drawing.Point(80, 147);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(1035, 241);
-            this.listView1.Sorting = System.Windows.Forms.SortOrder.Descending;
-            this.listView1.TabIndex = 6;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
+            this.localMusicListView.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
+            listViewItem1});
+            this.localMusicListView.Location = new System.Drawing.Point(80, 147);
+            this.localMusicListView.Name = "localMusicListView";
+            this.localMusicListView.Size = new System.Drawing.Size(1035, 241);
+            this.localMusicListView.Sorting = System.Windows.Forms.SortOrder.Ascending;
+            this.localMusicListView.TabIndex = 6;
+            this.localMusicListView.UseCompatibleStateImageBehavior = false;
+            this.localMusicListView.View = System.Windows.Forms.View.Details;
             // 
             // Order
             // 
@@ -178,19 +177,11 @@
             // 
             this.Playlist.Text = "Playlist";
             // 
-            // testBox
-            // 
-            this.testBox.Location = new System.Drawing.Point(161, 418);
-            this.testBox.Name = "testBox";
-            this.testBox.Size = new System.Drawing.Size(100, 20);
-            this.testBox.TabIndex = 7;
-            // 
             // openFileDialogLocal
             // 
             this.openFileDialogLocal.FileName = "ImportedMusic";
             this.openFileDialogLocal.Multiselect = true;
             this.openFileDialogLocal.Title = "Add file to local library";
-            this.openFileDialogLocal.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialogLocal_FileOk);
             // 
             // axWindowsMediaPlayer1
             // 
@@ -207,8 +198,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1166, 461);
             this.Controls.Add(this.axWindowsMediaPlayer1);
-            this.Controls.Add(this.testBox);
-            this.Controls.Add(this.listView1);
+            this.Controls.Add(this.localMusicListView);
             this.Controls.Add(this.AddToLocalLibBtn);
             this.Controls.Add(this.OptionButton);
             this.Controls.Add(this.APIButton);
@@ -228,7 +218,7 @@
         private System.Windows.Forms.Button APIButton;
         private System.Windows.Forms.Button OptionButton;
         private System.Windows.Forms.Button AddToLocalLibBtn;
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ListView localMusicListView;
         private System.Windows.Forms.ColumnHeader Order;
         private System.Windows.Forms.ColumnHeader Title;
         private System.Windows.Forms.ColumnHeader Artist;
@@ -237,7 +227,6 @@
         private System.Windows.Forms.ColumnHeader Length;
         private System.Windows.Forms.ColumnHeader Plays;
         private System.Windows.Forms.ColumnHeader Playlist;
-        private System.Windows.Forms.TextBox testBox;
         private System.Windows.Forms.OpenFileDialog openFileDialogLocal;
         private AxWMPLib.AxWindowsMediaPlayer axWindowsMediaPlayer1;
     }

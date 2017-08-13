@@ -35,14 +35,16 @@ namespace MusicApplication
             "Length real," +
             "Genre VARCHAR(20)," +
             "Plays int," +
-            "FileExtension VARCHAR(10))";
+            "FileExtension VARCHAR(10)," +
+            "FilePath VARCHAR(50)" +
+            ")";
             SQLiteCommand createTableCommand = new SQLiteCommand(createTableQuery, connection);
             connection.Open();
             createTableCommand.ExecuteNonQuery();
             connection.Close();
         }
 
-        public void AddSongToTable(string title, string artist, string album, string playlist, double length, string genre, int plays, string fileExtension)
+        public void AddSongToTable(string title, string artist, string album, string playlist, double length, string genre, int plays, string fileExtension, string filePath)
         {
             connection.Open();
             var paramTitle = new SQLiteParameter("@paramTitle") { Value = title };
@@ -53,7 +55,8 @@ namespace MusicApplication
             var paramGenre = new SQLiteParameter("@paramGenre") { Value = genre };
             var paramPlays = new SQLiteParameter("@paramPlays") { Value = plays };
             var paramExtension = new SQLiteParameter("@paramExtension") { Value = fileExtension };
-            SQLiteCommand addSongToTableCommand = new SQLiteCommand("INSERT INTO LocalMusicTable (Title, Artist, Album, Playlist, Length, Genre, Plays)" + " VALUES (@paramTitle, @paramArtist, @paramAlbum, @paramPlaylist, @paramLength, @paramGenre, @paramPlays, @paramExtension)", connection);
+            var paramPath = new SQLiteParameter("@paramPath") { Value = filePath };
+            SQLiteCommand addSongToTableCommand = new SQLiteCommand("INSERT INTO LocalMusicTable (Title, Artist, Album, Playlist, Length, Genre, Plays, FileExtension, FilePath)" + " VALUES (@paramTitle, @paramArtist, @paramAlbum, @paramPlaylist, @paramLength, @paramGenre, @paramPlays, @paramExtension, @paramPath)", connection);
             addSongToTableCommand.CommandType = System.Data.CommandType.Text;
             addSongToTableCommand.Parameters.Add(paramTitle);
             addSongToTableCommand.Parameters.Add(paramArtist);
@@ -63,13 +66,19 @@ namespace MusicApplication
             addSongToTableCommand.Parameters.Add(paramGenre);
             addSongToTableCommand.Parameters.Add(paramPlays);
             addSongToTableCommand.Parameters.Add(paramExtension);
+            addSongToTableCommand.Parameters.Add(paramPath);
             addSongToTableCommand.ExecuteNonQuery();
             connection.Close();
         }
 
-        public string GetSongsFromTable()
+        public void getSongsFromTable()
         {
-            string getFromTable = ("SELECT * FROM LocalMusicTable");
+            //getSongsFromTable(order, true);
+        }
+
+        public string GetSongsFromTable(string column, bool ascending)
+        {
+            string getFromTable = ("SELECT * FROM LocalMusicTable ORDER BY" + column);
             SQLiteCommand getFromTableCommand = new SQLiteCommand(getFromTable, connection);
             connection.Open();
             SQLiteDataReader reader = getFromTableCommand.ExecuteReader();

@@ -8,7 +8,7 @@ namespace MusicApplication.Enums
 {
     enum buttonEnums
         {
-            clicked = 1,
-            unclicked = 2
+            clicked = 0,
+            unclicked = 1
         };
 }
