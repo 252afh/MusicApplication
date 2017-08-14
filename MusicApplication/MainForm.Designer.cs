@@ -28,15 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem(new string[] {
-            "1",
-            "ExampleTitle",
-            "Blink182",
-            "Rock",
-            "20/07/2017",
-            "3.45",
-            "4",
-            "Playlist"}, -1);
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.HomePageButton = new System.Windows.Forms.Button();
             this.LocalButton = new System.Windows.Forms.Button();
@@ -132,56 +123,61 @@
             this.Length,
             this.Plays,
             this.Playlist});
-            this.localMusicListView.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem2});
-            this.localMusicListView.Location = new System.Drawing.Point(80, 147);
+            this.localMusicListView.FullRowSelect = true;
+            this.localMusicListView.GridLines = true;
+            this.localMusicListView.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.localMusicListView.Location = new System.Drawing.Point(34, 147);
             this.localMusicListView.Name = "localMusicListView";
-            this.localMusicListView.Size = new System.Drawing.Size(1035, 241);
+            this.localMusicListView.Size = new System.Drawing.Size(1043, 241);
             this.localMusicListView.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.localMusicListView.TabIndex = 6;
             this.localMusicListView.UseCompatibleStateImageBehavior = false;
             this.localMusicListView.View = System.Windows.Forms.View.Details;
+            this.localMusicListView.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.localMusicListView_ColumnClick);
             // 
             // Order
             // 
             this.Order.Text = "Order";
-            this.Order.Width = 86;
+            this.Order.Width = 56;
             // 
             // Title
             // 
             this.Title.Text = "Title";
-            this.Title.Width = 86;
+            this.Title.Width = 138;
             // 
             // Artist
             // 
             this.Artist.Text = "Artist";
-            this.Artist.Width = 88;
+            this.Artist.Width = 183;
             // 
             // Album
             // 
             this.Album.Text = "Genre";
-            this.Album.Width = 87;
+            this.Album.Width = 80;
             // 
             // Date
             // 
             this.Date.Text = "Date";
+            this.Date.Width = 83;
             // 
             // Length
             // 
             this.Length.Text = "Length";
+            this.Length.Width = 51;
             // 
             // Plays
             // 
             this.Plays.Text = "Plays";
+            this.Plays.Width = 53;
             // 
             // Playlist
             // 
             this.Playlist.Text = "Playlist";
+            this.Playlist.Width = 395;
             // 
             // openFileDialogLocal
             // 
             this.openFileDialogLocal.FileName = "ImportedMusic";
-            this.openFileDialogLocal.Multiselect = true;
             this.openFileDialogLocal.Title = "Add file to local library";
             // 
             // axWindowsMediaPlayer1

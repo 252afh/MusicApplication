@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.IO;
 using System.Windows.Forms;
 using Microsoft.MediaPlayer.Interop;
@@ -116,7 +109,11 @@ namespace MusicApplication
                     WindowsMediaPlayer winmp = new WindowsMediaPlayer(); // creates a WindowsMediaPlayer instance
                     IWMPMedia mediainfo = winmp.newMedia(filePath); //gets file length for wmp
                     length = mediainfo.duration;
-                    dbConn.AddSongToTable(title, artist = null, album = null, playlist = null, length, genre = null, plays, extension, filePath);
+                    string addResult = dbConn.AddSongToTable(title, artist = null, album = null, playlist = null, length, genre = null, plays, extension, filePath);
+                    if (!string.IsNullOrEmpty(addResult))
+                    {
+                        MessageBox.Show(addResult);
+                    }
                     isAdded = true;
                     break;
                 default:
@@ -173,6 +170,11 @@ namespace MusicApplication
         private void button1_Click(object sender, EventArgs e)
         {
             dbConn.dropTable();
+        }
+
+        private void localMusicListView_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            this.localMusicListView.ListViewItemSorter = new ListViewItemComparer(e.Column);
         }
     }
 }
