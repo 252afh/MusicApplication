@@ -58,7 +58,7 @@ namespace MusicApplication
 
         public string AddSongToTable(string title, string artist, string album, string playlist, double length, string genre, int plays, string fileExtension, string filePath)
         {
-            connection.Open();
+            
             SQLiteParameter paramTitle = new SQLiteParameter("@paramTitle") { Value = title };
             SQLiteParameter paramArtist = new SQLiteParameter("@paramArtist") { Value = artist };
             SQLiteParameter paramAlbum = new SQLiteParameter("@paramAlbum") { Value = album };
@@ -69,10 +69,13 @@ namespace MusicApplication
             SQLiteParameter paramExtension = new SQLiteParameter("@paramExtension") { Value = fileExtension };
             SQLiteParameter paramPath = new SQLiteParameter("@paramPath") { Value = filePath };
 
-            bool notExist = checkNotExists(paramPath);
-
+            bool notExist = checkNotExists(filePath);
+            
             if (notExist)
             {
+                connection = new SQLiteConnection();
+                connection.Open();
+
                 SQLiteCommand addSongToTableCommand = new SQLiteCommand("INSERT INTO LocalMusicTable (Title, Artist, Album, Playlist, Length, Genre, Plays, FileExtension, FilePath)" + " VALUES (@paramTitle, @paramArtist, @paramAlbum, @paramPlaylist, @paramLength, @paramGenre, @paramPlays, @paramExtension, @paramPath)", connection);
 
                 addSongToTableCommand.CommandType = System.Data.CommandType.Text;
@@ -92,6 +95,7 @@ namespace MusicApplication
             }
             else if (!notExist)
             {
+                connection.Close();
                 return "That song already exists at that file location.";
             }
             connection.Close();
@@ -99,16 +103,34 @@ namespace MusicApplication
             
         }
 
-        private bool checkNotExists(SQLiteParameter extensionParam)
+        private bool checkNotExists(string filepath)
         {
-            connection.Open();
-            SQLiteCommand checkCommand = new SQLiteCommand("SELECT FileExtension FROM LocalMusicTable WHERE FileExtension = @paramPath");
-            string result = Convert.ToString(checkCommand.ExecuteScalar());
-            connection.Close();
-
-            if (result != null || result != "")
+            if (connection.State == System.Data.ConnectionState.Closed)
             {
-                return true;
+                connection.Open();
+            }
+            using (connection)
+            {
+                using (SQLiteCommand checkCommand = new SQLiteCommand())
+                {
+                    checkCommand.Connection = connection;
+                    checkCommand.CommandText = "SELECT [FilePath] FROM [LocalMusicTable] WHERE [FilePath] = @paramPath";
+                    if (!(connection.State == System.Data.ConnectionState.Open))
+                    {
+                        connection.Open();
+                    }
+                    checkCommand.Parameters.AddWithValue("@paramPath", filepath);
+                    SQLiteDataReader result = checkCommand.ExecuteReader();
+
+                    if (result.HasRows)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
             }
             return false;
         }
