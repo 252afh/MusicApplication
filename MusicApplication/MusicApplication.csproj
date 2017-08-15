@@ -82,12 +82,9 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="wmppia">
-      <HintPath>C:\WMSDK\WMPSDK9\redist\wmppia.dll</HintPath>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="LocalAudioItem.cs" />
     <Compile Include="DatabaseConn.cs" />
     <Compile Include="Enums\ButtonsEnums.cs" />
     <Compile Include="Enums\CursorEnums.cs" />

@@ -75,6 +75,7 @@
             this.LocalButton.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MousePressed);
             this.LocalButton.MouseEnter += new System.EventHandler(this.MouseEnter);
             this.LocalButton.MouseLeave += new System.EventHandler(this.MouseExit);
+            this.LocalButton.MouseUp += new System.Windows.Forms.MouseEventHandler(this.MouseUnClicked);
             // 
             // APIButton
             // 
@@ -88,6 +89,7 @@
             this.APIButton.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MousePressed);
             this.APIButton.MouseEnter += new System.EventHandler(this.MouseEnter);
             this.APIButton.MouseLeave += new System.EventHandler(this.MouseExit);
+            this.APIButton.MouseUp += new System.Windows.Forms.MouseEventHandler(this.MouseUnClicked);
             // 
             // OptionButton
             // 
@@ -101,6 +103,7 @@
             this.OptionButton.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MousePressed);
             this.OptionButton.MouseEnter += new System.EventHandler(this.MouseEnter);
             this.OptionButton.MouseLeave += new System.EventHandler(this.MouseExit);
+            this.OptionButton.MouseUp += new System.Windows.Forms.MouseEventHandler(this.MouseUnClicked);
             // 
             // AddToLocalLibBtn
             // 
@@ -126,9 +129,9 @@
             this.localMusicListView.FullRowSelect = true;
             this.localMusicListView.GridLines = true;
             this.localMusicListView.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.localMusicListView.Location = new System.Drawing.Point(34, 147);
+            this.localMusicListView.Location = new System.Drawing.Point(12, 147);
             this.localMusicListView.Name = "localMusicListView";
-            this.localMusicListView.Size = new System.Drawing.Size(1043, 241);
+            this.localMusicListView.Size = new System.Drawing.Size(1142, 260);
             this.localMusicListView.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.localMusicListView.TabIndex = 6;
             this.localMusicListView.UseCompatibleStateImageBehavior = false;

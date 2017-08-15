@@ -113,11 +113,6 @@ namespace MusicApplication
             return false;
         }
 
-        public void GetSongsFromTable()
-        {
-            //getSongsFromTable(order, true);
-        }
-
         private int getRowCount()
         {
             string countQuery = ("SELECT COUNT(Id)" + (" FROM LocalMusicTable"));
@@ -128,42 +123,31 @@ namespace MusicApplication
             return count;
         }
 
-        public ArrayList GetSongsFromTable(string column)
+        public ArrayList GetSongsFromTable()
         {
             int rowCount = getRowCount();
             string getFromTable = ("SELECT * FROM LocalMusicTable");
             SQLiteCommand getFromTableCommand = new SQLiteCommand(getFromTable, connection);
             connection.Open();
             SQLiteDataReader reader = getFromTableCommand.ExecuteReader();
-            int readerId;
-            string readerTitle = null;
-            string readerArtist = null;
-            string readerAlmbum = null;
-            string readerPlaylist = null;
-            double readerLength;
-            string readerGenre = null;
-            int readerPlays;
-            string readerFileExtension = null;
-            string readerFilePath = null;
+            ArrayList audioItemList = new ArrayList();
             while (reader.Read())
             {
-                Array readerItems
-                {
-
-                };
-                readerId = (int)reader["Id"];
-                readerTitle = (string)reader["Title"];
-                readerArtist = (string)reader["Artist"];
-                readerAlmbum = (string)reader["Album"];
-                readerPlaylist = (string)reader["PlayList"];
-                readerLength = (double)reader["Length"];
-                readerGenre = (string)reader["Genre"];
-                readerPlays = (int)reader["Plays"];
-                readerFileExtension = (string)reader["Extension"];
-                readerFilePath = (string)reader["FilePath"];
+                int readerId = (int)reader["Id"];
+                string readerTitle = (string)reader["Title"];
+                string readerArtist = (string)reader["Artist"];
+                string readerAlbum = (string)reader["Album"];
+                string readerPlaylist = (string)reader["PlayList"];
+                double readerLength = (double)reader["Length"];
+                string readerGenre = (string)reader["Genre"];
+                int readerPlays = (int)reader["Plays"];
+                string readerFileExtension = (string)reader["Extension"];
+                string readerFilePath = (string)reader["FilePath"];
+                LocalAudioItem audioItem = new LocalAudioItem(readerId, readerTitle, readerArtist, readerAlbum, readerPlaylist, readerLength, readerGenre, readerPlays, readerFileExtension, readerFilePath);
+                audioItemList.Add(audioItem);
             }
             connection.Close();
-            //return readerResult;
+            return audioItemList;
         }
     }
 }

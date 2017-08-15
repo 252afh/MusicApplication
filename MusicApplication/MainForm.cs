@@ -1,8 +1,9 @@
 ﻿using System;
 using System.IO;
 using System.Windows.Forms;
-using Microsoft.MediaPlayer.Interop;
 using MusicApplication.Enums;
+using WMPLib;
+using System.Collections;
 
 namespace MusicApplication
 { 
@@ -101,7 +102,6 @@ namespace MusicApplication
             double length = 0;
             string genre = null;
             int plays = 0;
-            bool isAdded = false;
             string extension = Path.GetExtension(filePath); //gets file extension
             switch (extension)
             {
@@ -114,22 +114,24 @@ namespace MusicApplication
                     {
                         MessageBox.Show(addResult);
                     }
-                    isAdded = true;
+                    updateTable();
                     break;
                 default:
                     //MessageBox.Show("Error accepting that file type, please try again", "Error importing file to local music");
                     //openFileDialogLocal.Dispose();
                     break;
             }
+            openFileDialogLocal.Dispose();
+        }
 
-            dbConn.GetSongsFromTable("boop");
-
-            if (isAdded)
+        private void updateTable()
+        {
+            ArrayList itemList = dbConn.GetSongsFromTable();
+            ListViewItem listViewItem;
+            ListViewItem.ListViewSubItem toAddTitle, toAddArtist = null, toAddAlbum = null, toAddPlaylist = null, toAddLength = null, toAddGenre = null, toAddPlays = null, toAddExtension = null, toAddPath = null;
+            foreach (LocalAudioItem item in itemList)
             {
-                ListViewItem itemToAdd = new ListViewItem();
-                ListViewItem.ListViewSubItem toAddTitle, toAddArtist = null, toAddAlbum = null, toAddPlaylist = null, toAddLength = null, toAddGenre = null, toAddPlays = null, toAddExtension = null, toAddPath = null;
-
-                ListViewItem.ListViewSubItem[] subItems = new ListViewItem.ListViewSubItem[9]
+                ListViewItem.ListViewSubItem[] subItems = new ListViewItem.ListViewSubItem[7]
                 {
                     toAddTitle = new ListViewItem.ListViewSubItem(),
                     toAddArtist = new ListViewItem.ListViewSubItem(),
@@ -138,33 +140,18 @@ namespace MusicApplication
                     toAddLength = new ListViewItem.ListViewSubItem(),
                     toAddGenre = new ListViewItem.ListViewSubItem(),
                     toAddPlays = new ListViewItem.ListViewSubItem(),
-                    toAddExtension = new ListViewItem.ListViewSubItem(),
-                    toAddPath = new ListViewItem.ListViewSubItem()
                 };
-
-                toAddTitle.Text = title;
-                toAddArtist.Text = artist;
-                toAddAlbum.Text = album;
-                toAddPlaylist.Text = playlist;
-                toAddLength.Text = Math.Round(length,2).ToString();
-                toAddGenre.Text = genre;
-                toAddPlays.Text = plays.ToString();
-                toAddExtension.Text = extension;
-                toAddPath.Text = filePath;
-                itemToAdd.Text = (localMusicListView.Items.Count+1).ToString();
-
-                itemToAdd.SubItems.AddRange(subItems);
-                localMusicListView.Items.Add(itemToAdd);
-                
-                //updateTable();
+                toAddTitle.Text = item.readerTitle?? null;
+                toAddArtist.Text = item.readerArtist ?? null;
+                toAddAlbum.Text = item.readerAlbum ?? null;
+                toAddPlaylist.Text = item.readerPlaylist ?? null;
+                toAddLength.Text = item.readerLength.ToString() ?? "0";
+                toAddGenre.Text = item.readerGenre ?? null;
+                toAddPlays.Text = item.readerPlays.ToString() ?? "0";
+                listViewItem = new ListViewItem() ?? null;
+                listViewItem.SubItems.AddRange(subItems);
+                localMusicListView.Items.Add(listViewItem);
             }
-
-            openFileDialogLocal.Dispose();
-        }
-
-        private void updateTable()
-        {
-
         }
 
         private void button1_Click(object sender, EventArgs e)
