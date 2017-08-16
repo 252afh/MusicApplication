@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BrightIdeasSoftware;
+using System;
 using System.IO;
 using System.Windows.Forms;
 using MusicApplication.Enums;
@@ -10,10 +11,14 @@ namespace MusicApplication
     public partial class MainForm : Form
     {
         DatabaseConn dbConn;
+        WindowsMediaPlayer winmp;
         public MainForm()
         {
             InitializeComponent();
+            winmp = new WindowsMediaPlayer();
             dbConn = new DatabaseConn();
+            updateTable();
+            
         }
 
         private void MouseEnter(object sender, EventArgs e)
@@ -95,7 +100,7 @@ namespace MusicApplication
             openFileDialogLocal.FilterIndex = 1;
             DialogResult result = openFileDialogLocal.ShowDialog();
             string filePath = openFileDialogLocal.FileName;
-            string title = openFileDialogLocal.SafeFileName;  //configure file dialog
+            string title = Path.GetFileNameWithoutExtension(filePath);  //configure file dialog
             string artist = null;
             string album = null;
             string playlist = null;
@@ -106,19 +111,19 @@ namespace MusicApplication
             switch (extension)
             {
                 case ".wmv":
-                    WindowsMediaPlayer winmp = new WindowsMediaPlayer(); // creates a WindowsMediaPlayer instance
                     IWMPMedia mediainfo = winmp.newMedia(filePath); //gets file length for wmp
-                    length = mediainfo.duration;
+                    length = Math.Round(mediainfo.duration, 2);
                     string addResult = dbConn.AddSongToTable(title, artist = null, album = null, playlist = null, length, genre = null, plays, extension, filePath);
                     if (!string.IsNullOrEmpty(addResult))
                     {
                         MessageBox.Show(addResult);
                     }
-                    updateTable();
+                    else
+                    {
+                        updateTable();
+                    }
                     break;
                 default:
-                    //MessageBox.Show("Error accepting that file type, please try again", "Error importing file to local music");
-                    //openFileDialogLocal.Dispose();
                     break;
             }
             openFileDialogLocal.Dispose();
@@ -128,6 +133,11 @@ namespace MusicApplication
         {
             ArrayList itemList = dbConn.GetSongsFromTable();
             ListViewItem listViewItem;
+            foreach (LocalAudioItem audioItem in itemList)
+            {
+                objectListView.AddObject(audioItem);
+            }
+            
             ListViewItem.ListViewSubItem toAddTitle, toAddArtist = null, toAddAlbum = null, toAddPlaylist = null, toAddLength = null, toAddGenre = null, toAddPlays = null, toAddExtension = null, toAddPath = null;
             foreach (LocalAudioItem item in itemList)
             {
@@ -141,7 +151,8 @@ namespace MusicApplication
                     toAddGenre = new ListViewItem.ListViewSubItem(),
                     toAddPlays = new ListViewItem.ListViewSubItem(),
                 };
-                toAddTitle.Text = item.readerTitle?? null;
+
+                toAddTitle.Text = item.readerTitle ?? null;
                 toAddArtist.Text = item.readerArtist ?? null;
                 toAddAlbum.Text = item.readerAlbum ?? null;
                 toAddPlaylist.Text = item.readerPlaylist ?? null;
@@ -150,7 +161,6 @@ namespace MusicApplication
                 toAddPlays.Text = item.readerPlays.ToString() ?? "0";
                 listViewItem = new ListViewItem() ?? null;
                 listViewItem.SubItems.AddRange(subItems);
-                localMusicListView.Items.Add(listViewItem);
             }
         }
 
@@ -159,9 +169,28 @@ namespace MusicApplication
             dbConn.dropTable();
         }
 
-        private void localMusicListView_ColumnClick(object sender, ColumnClickEventArgs e)
+        private void objectListView_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            this.localMusicListView.ListViewItemSorter = new ListViewItemComparer(e.Column);
+            var playst = winmp.playState;
+            if (!(winmp.playState == WMPPlayState.wmppsStopped || winmp.playState == WMPPlayState.wmppsUndefined))
+            {
+                winmp.controls.stop();
+            }
+            if (objectListView.SelectedItems.Count > 1)
+            {
+
+            }
+            LocalAudioItem selectedRow = (LocalAudioItem)objectListView.SelectedItem.RowObject;
+            int lengthInt = (int.Parse(selectedRow.readerLength.ToString().Split('.')[0]) * 60) + int.Parse(selectedRow.readerLength.ToString().Split('.')[1]);
+
+            switch (selectedRow.readerFileExtension)
+            {
+                case ".wmv":
+                    
+                    winmp.URL = selectedRow.readerFilePath;
+                    winmp.controls.play();
+                    break;
+            }
         }
     }
 }
