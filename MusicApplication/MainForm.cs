@@ -131,36 +131,11 @@ namespace MusicApplication
 
         private void updateTable()
         {
+            objectListView.ClearObjects();
             ArrayList itemList = dbConn.GetSongsFromTable();
-            ListViewItem listViewItem;
             foreach (LocalAudioItem audioItem in itemList)
             {
                 objectListView.AddObject(audioItem);
-            }
-            
-            ListViewItem.ListViewSubItem toAddTitle, toAddArtist = null, toAddAlbum = null, toAddPlaylist = null, toAddLength = null, toAddGenre = null, toAddPlays = null, toAddExtension = null, toAddPath = null;
-            foreach (LocalAudioItem item in itemList)
-            {
-                ListViewItem.ListViewSubItem[] subItems = new ListViewItem.ListViewSubItem[7]
-                {
-                    toAddTitle = new ListViewItem.ListViewSubItem(),
-                    toAddArtist = new ListViewItem.ListViewSubItem(),
-                    toAddAlbum = new ListViewItem.ListViewSubItem(),
-                    toAddPlaylist = new ListViewItem.ListViewSubItem(),
-                    toAddLength = new ListViewItem.ListViewSubItem(),
-                    toAddGenre = new ListViewItem.ListViewSubItem(),
-                    toAddPlays = new ListViewItem.ListViewSubItem(),
-                };
-
-                toAddTitle.Text = item.readerTitle ?? null;
-                toAddArtist.Text = item.readerArtist ?? null;
-                toAddAlbum.Text = item.readerAlbum ?? null;
-                toAddPlaylist.Text = item.readerPlaylist ?? null;
-                toAddLength.Text = item.readerLength.ToString() ?? "0";
-                toAddGenre.Text = item.readerGenre ?? null;
-                toAddPlays.Text = item.readerPlays.ToString() ?? "0";
-                listViewItem = new ListViewItem() ?? null;
-                listViewItem.SubItems.AddRange(subItems);
             }
         }
 
