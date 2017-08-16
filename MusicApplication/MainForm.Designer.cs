@@ -34,19 +34,24 @@
             this.APIButton = new System.Windows.Forms.Button();
             this.OptionButton = new System.Windows.Forms.Button();
             this.AddToLocalLibBtn = new System.Windows.Forms.Button();
-            this.localMusicListView = new System.Windows.Forms.ListView();
-            this.Order = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Title = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Artist = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Album = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Date = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Length = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Plays = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Playlist = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.openFileDialogLocal = new System.Windows.Forms.OpenFileDialog();
-            this.axWindowsMediaPlayer1 = new AxWMPLib.AxWindowsMediaPlayer();
             this.button1 = new System.Windows.Forms.Button();
+            this.axWindowsMediaPlayer1 = new AxWMPLib.AxWindowsMediaPlayer();
+            this.objectListView = new BrightIdeasSoftware.ObjectListView();
+            this.OrderObject = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.TitleObject = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.ArtistObject = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.AlbumObject = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.GenreObject = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.DateObject = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.LengthObject = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.PlaysObject = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.PlaylistObject = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.ExtensionObject = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.FilePathObject = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.KeyObject = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.objectListView)).BeginInit();
             this.SuspendLayout();
             // 
             // HomePageButton
@@ -115,82 +120,10 @@
             this.AddToLocalLibBtn.UseVisualStyleBackColor = true;
             this.AddToLocalLibBtn.Click += new System.EventHandler(this.AddToLocalLibBtn_Click);
             // 
-            // localMusicListView
-            // 
-            this.localMusicListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.Order,
-            this.Title,
-            this.Artist,
-            this.Album,
-            this.Date,
-            this.Length,
-            this.Plays,
-            this.Playlist});
-            this.localMusicListView.FullRowSelect = true;
-            this.localMusicListView.GridLines = true;
-            this.localMusicListView.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.localMusicListView.Location = new System.Drawing.Point(12, 147);
-            this.localMusicListView.Name = "localMusicListView";
-            this.localMusicListView.Size = new System.Drawing.Size(1142, 260);
-            this.localMusicListView.Sorting = System.Windows.Forms.SortOrder.Ascending;
-            this.localMusicListView.TabIndex = 6;
-            this.localMusicListView.UseCompatibleStateImageBehavior = false;
-            this.localMusicListView.View = System.Windows.Forms.View.Details;
-            this.localMusicListView.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.localMusicListView_ColumnClick);
-            // 
-            // Order
-            // 
-            this.Order.Text = "Order";
-            this.Order.Width = 56;
-            // 
-            // Title
-            // 
-            this.Title.Text = "Title";
-            this.Title.Width = 138;
-            // 
-            // Artist
-            // 
-            this.Artist.Text = "Artist";
-            this.Artist.Width = 183;
-            // 
-            // Album
-            // 
-            this.Album.Text = "Genre";
-            this.Album.Width = 80;
-            // 
-            // Date
-            // 
-            this.Date.Text = "Date";
-            this.Date.Width = 83;
-            // 
-            // Length
-            // 
-            this.Length.Text = "Length";
-            this.Length.Width = 51;
-            // 
-            // Plays
-            // 
-            this.Plays.Text = "Plays";
-            this.Plays.Width = 53;
-            // 
-            // Playlist
-            // 
-            this.Playlist.Text = "Playlist";
-            this.Playlist.Width = 395;
-            // 
             // openFileDialogLocal
             // 
             this.openFileDialogLocal.FileName = "ImportedMusic";
             this.openFileDialogLocal.Title = "Add file to local library";
-            // 
-            // axWindowsMediaPlayer1
-            // 
-            this.axWindowsMediaPlayer1.Enabled = true;
-            this.axWindowsMediaPlayer1.Location = new System.Drawing.Point(346, 79);
-            this.axWindowsMediaPlayer1.Name = "axWindowsMediaPlayer1";
-            this.axWindowsMediaPlayer1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWindowsMediaPlayer1.OcxState")));
-            this.axWindowsMediaPlayer1.Size = new System.Drawing.Size(438, 62);
-            this.axWindowsMediaPlayer1.TabIndex = 8;
             // 
             // button1
             // 
@@ -202,14 +135,129 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // axWindowsMediaPlayer1
+            // 
+            this.axWindowsMediaPlayer1.Enabled = true;
+            this.axWindowsMediaPlayer1.Location = new System.Drawing.Point(346, 79);
+            this.axWindowsMediaPlayer1.Name = "axWindowsMediaPlayer1";
+            this.axWindowsMediaPlayer1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWindowsMediaPlayer1.OcxState")));
+            this.axWindowsMediaPlayer1.Size = new System.Drawing.Size(438, 62);
+            this.axWindowsMediaPlayer1.TabIndex = 8;
+            // 
+            // objectListView
+            // 
+            this.objectListView.AllColumns.Add(this.OrderObject);
+            this.objectListView.AllColumns.Add(this.TitleObject);
+            this.objectListView.AllColumns.Add(this.ArtistObject);
+            this.objectListView.AllColumns.Add(this.AlbumObject);
+            this.objectListView.AllColumns.Add(this.GenreObject);
+            this.objectListView.AllColumns.Add(this.DateObject);
+            this.objectListView.AllColumns.Add(this.LengthObject);
+            this.objectListView.AllColumns.Add(this.PlaysObject);
+            this.objectListView.AllColumns.Add(this.PlaylistObject);
+            this.objectListView.AllColumns.Add(this.ExtensionObject);
+            this.objectListView.AllColumns.Add(this.FilePathObject);
+            this.objectListView.AllColumns.Add(this.KeyObject);
+            this.objectListView.CellEditUseWholeCell = false;
+            this.objectListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.OrderObject,
+            this.TitleObject,
+            this.ArtistObject,
+            this.AlbumObject,
+            this.GenreObject,
+            this.DateObject,
+            this.LengthObject,
+            this.PlaysObject,
+            this.PlaylistObject});
+            this.objectListView.Cursor = System.Windows.Forms.Cursors.Default;
+            this.objectListView.FullRowSelect = true;
+            this.objectListView.GridLines = true;
+            this.objectListView.Location = new System.Drawing.Point(12, 147);
+            this.objectListView.Name = "objectListView";
+            this.objectListView.ShowGroups = false;
+            this.objectListView.Size = new System.Drawing.Size(1142, 260);
+            this.objectListView.Sorting = System.Windows.Forms.SortOrder.Ascending;
+            this.objectListView.TabIndex = 10;
+            this.objectListView.UseCompatibleStateImageBehavior = false;
+            this.objectListView.View = System.Windows.Forms.View.Details;
+            this.objectListView.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.objectListView_MouseDoubleClick);
+            // 
+            // OrderObject
+            // 
+            this.OrderObject.Text = "Order";
+            // 
+            // TitleObject
+            // 
+            this.TitleObject.AspectName = "readerTitle";
+            this.TitleObject.Text = "Title";
+            // 
+            // ArtistObject
+            // 
+            this.ArtistObject.AspectName = "readerArtist";
+            this.ArtistObject.Text = "Artist";
+            // 
+            // AlbumObject
+            // 
+            this.AlbumObject.AspectName = "readerAlbum";
+            this.AlbumObject.Text = "Album";
+            // 
+            // GenreObject
+            // 
+            this.GenreObject.AspectName = "readerGenre";
+            this.GenreObject.Text = "Genre";
+            // 
+            // DateObject
+            // 
+            this.DateObject.AspectName = "";
+            this.DateObject.Text = "Date";
+            // 
+            // LengthObject
+            // 
+            this.LengthObject.AspectName = "readerLength";
+            this.LengthObject.Text = "Length";
+            // 
+            // PlaysObject
+            // 
+            this.PlaysObject.AspectName = "readerPlays";
+            this.PlaysObject.Text = "Plays";
+            // 
+            // PlaylistObject
+            // 
+            this.PlaylistObject.AspectName = "readerPlaylist";
+            this.PlaylistObject.Text = "Playlist";
+            // 
+            // ExtensionObject
+            // 
+            this.ExtensionObject.AspectName = "readerFileExtension";
+            this.ExtensionObject.DisplayIndex = 9;
+            this.ExtensionObject.IsVisible = false;
+            this.ExtensionObject.Text = "Extension";
+            this.ExtensionObject.Width = 202;
+            // 
+            // FilePathObject
+            // 
+            this.FilePathObject.AspectName = "readerFilePath";
+            this.FilePathObject.DisplayIndex = 10;
+            this.FilePathObject.IsVisible = false;
+            this.FilePathObject.Text = "FilePath";
+            this.FilePathObject.Width = 149;
+            // 
+            // KeyObject
+            // 
+            this.KeyObject.AspectName = "readerId";
+            this.KeyObject.DisplayIndex = 9;
+            this.KeyObject.IsVisible = false;
+            this.KeyObject.Text = "key";
+            this.KeyObject.Width = 255;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1166, 461);
+            this.Controls.Add(this.objectListView);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.axWindowsMediaPlayer1);
-            this.Controls.Add(this.localMusicListView);
             this.Controls.Add(this.AddToLocalLibBtn);
             this.Controls.Add(this.OptionButton);
             this.Controls.Add(this.APIButton);
@@ -218,6 +266,7 @@
             this.Name = "MainForm";
             this.Text = "MusicPlayer";
             ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.objectListView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -229,18 +278,22 @@
         private System.Windows.Forms.Button APIButton;
         private System.Windows.Forms.Button OptionButton;
         private System.Windows.Forms.Button AddToLocalLibBtn;
-        private System.Windows.Forms.ListView localMusicListView;
-        private System.Windows.Forms.ColumnHeader Order;
-        private System.Windows.Forms.ColumnHeader Title;
-        private System.Windows.Forms.ColumnHeader Artist;
-        private System.Windows.Forms.ColumnHeader Album;
-        private System.Windows.Forms.ColumnHeader Date;
-        private System.Windows.Forms.ColumnHeader Length;
-        private System.Windows.Forms.ColumnHeader Plays;
-        private System.Windows.Forms.ColumnHeader Playlist;
         private System.Windows.Forms.OpenFileDialog openFileDialogLocal;
         private AxWMPLib.AxWindowsMediaPlayer axWindowsMediaPlayer1;
         private System.Windows.Forms.Button button1;
+        private BrightIdeasSoftware.ObjectListView objectListView;
+        private BrightIdeasSoftware.OLVColumn OrderObject;
+        private BrightIdeasSoftware.OLVColumn TitleObject;
+        private BrightIdeasSoftware.OLVColumn ArtistObject;
+        private BrightIdeasSoftware.OLVColumn GenreObject;
+        private BrightIdeasSoftware.OLVColumn DateObject;
+        private BrightIdeasSoftware.OLVColumn LengthObject;
+        private BrightIdeasSoftware.OLVColumn PlaysObject;
+        private BrightIdeasSoftware.OLVColumn PlaylistObject;
+        private BrightIdeasSoftware.OLVColumn ExtensionObject;
+        private BrightIdeasSoftware.OLVColumn FilePathObject;
+        private BrightIdeasSoftware.OLVColumn KeyObject;
+        private BrightIdeasSoftware.OLVColumn AlbumObject;
     }
 }
 

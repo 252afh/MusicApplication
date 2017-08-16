@@ -8,7 +8,7 @@ namespace MusicApplication
 {
     class LocalAudioItem
     {
-        public int readerId { get; set; }
+        public long readerId { get; set; }
         public string readerTitle { get; set; }
         public string readerArtist { get; set; }
         public string readerAlbum { get; set; }
@@ -19,7 +19,7 @@ namespace MusicApplication
         public string readerFileExtension { get; set; }
         public string readerFilePath { get; set; }
 
-        public LocalAudioItem(int Id, string title, string artist, string album, string playlist, double length, string genre, int plays, string extension, string path)
+        public LocalAudioItem(long Id, string title, string artist, string album, string playlist, double length, string genre, int plays, string extension, string path)
         {
             this.readerId = Id;
             this.readerTitle = title;
