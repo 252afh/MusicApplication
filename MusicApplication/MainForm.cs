@@ -146,26 +146,29 @@ namespace MusicApplication
 
         private void objectListView_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            var playst = winmp.playState;
+            WMPPlayState playst = winmp.playState;
+
             if (!(winmp.playState == WMPPlayState.wmppsStopped || winmp.playState == WMPPlayState.wmppsUndefined))
             {
                 winmp.controls.stop();
             }
-            if (objectListView.SelectedItems.Count > 1)
-            {
 
-            }
-            LocalAudioItem selectedRow = (LocalAudioItem)objectListView.SelectedItem.RowObject;
-            int lengthInt = (int.Parse(selectedRow.readerLength.ToString().Split('.')[0]) * 60) + int.Parse(selectedRow.readerLength.ToString().Split('.')[1]);
+            ListView.SelectedListViewItemCollection selectedRow = objectListView.SelectedItems;
 
-            switch (selectedRow.readerFileExtension)
+            foreach (LocalAudioItem rowItem in selectedRow) //will be able to play multiple now
             {
-                case ".wmv":
-                    
-                    winmp.URL = selectedRow.readerFilePath;
-                    winmp.controls.play();
-                    break;
+                int lengthInt = (int.Parse(rowItem.readerLength.ToString().Split('.')[0]) * 60) + int.Parse(rowItem.readerLength.ToString().Split('.')[1]);
+
+                switch (rowItem.readerFileExtension)
+                {
+                    case ".wmv":
+
+                        winmp.URL = rowItem.readerFilePath;
+                        winmp.controls.play();
+                        break;
+                }
             }
+            
         }
     }
 }
