@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicApplication", "MusicAp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicApplication.Tests", "MusicApplication.Tests\MusicApplication.Tests.csproj", "{B0F96356-C11E-44BA-8923-5C90EE7D83B8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomBar", "CustomBar\CustomBar.csproj", "{4065A508-91FF-4B17-ACA1-87B87DE3D10A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{B0F96356-C11E-44BA-8923-5C90EE7D83B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B0F96356-C11E-44BA-8923-5C90EE7D83B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B0F96356-C11E-44BA-8923-5C90EE7D83B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4065A508-91FF-4B17-ACA1-87B87DE3D10A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4065A508-91FF-4B17-ACA1-87B87DE3D10A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4065A508-91FF-4B17-ACA1-87B87DE3D10A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4065A508-91FF-4B17-ACA1-87B87DE3D10A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
