@@ -13,13 +13,13 @@ namespace MusicApplication
         public string readerArtist { get; set; }
         public string readerAlbum { get; set; }
         public string readerPlaylist { get; set; }
-        public double readerLength { get; set; }
+        public int readerLength { get; set; }
         public string readerGenre { get; set; }
         public int readerPlays { get; set; }
         public string readerFileExtension { get; set; }
         public string readerFilePath { get; set; }
 
-        public LocalAudioItem(long Id, string title, string artist, string album, string playlist, double length, string genre, int plays, string extension, string path)
+        public LocalAudioItem(long Id, string title, string artist, string album, string playlist, int length, string genre, int plays, string extension, string path)
         {
             this.readerId = Id;
             this.readerTitle = title;

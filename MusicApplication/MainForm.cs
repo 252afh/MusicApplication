@@ -104,7 +104,7 @@ namespace MusicApplication
             string artist = null;
             string album = null;
             string playlist = null;
-            double length = 0;
+            int length = 0;
             string genre = null;
             int plays = 0;
             string extension = Path.GetExtension(filePath); //gets file extension
@@ -112,7 +112,7 @@ namespace MusicApplication
             {
                 case ".wmv":
                     IWMPMedia mediainfo = winmp.newMedia(filePath); //gets file length for wmp
-                    length = Math.Round(mediainfo.duration, 2);
+                    length = (int)Math.Ceiling(mediainfo.duration);
                     string addResult = dbConn.AddSongToTable(title, artist = null, album = null, playlist = null, length, genre = null, plays, extension, filePath);
                     if (!string.IsNullOrEmpty(addResult))
                     {
@@ -155,15 +155,20 @@ namespace MusicApplication
 
             ListView.SelectedListViewItemCollection selectedRow = objectListView.SelectedItems;
 
-            foreach (LocalAudioItem rowItem in selectedRow) //will be able to play multiple now
+            foreach (OLVListItem rowObject in selectedRow) //will be able to play multiple now
             {
+                LocalAudioItem rowItem = (LocalAudioItem)rowObject.RowObject;
                 int lengthInt = (int.Parse(rowItem.readerLength.ToString().Split('.')[0]) * 60) + int.Parse(rowItem.readerLength.ToString().Split('.')[1]);
 
                 switch (rowItem.readerFileExtension)
                 {
                     case ".wmv":
-
                         winmp.URL = rowItem.readerFilePath;
+                        string[] splitLength = rowItem.readerLength.ToString().Split('.');
+                        int length = (int.Parse(splitLength[0]) * 60) + int.Parse(splitLength[1]);
+                        progressBar1.Value = 0;
+                        progressBar1.Maximum = (int)rowItem.readerLength * 60;
+                        timeLabel.Text = (rowItem.readerLength * 60).ToString();
                         winmp.controls.play();
                         break;
                 }
