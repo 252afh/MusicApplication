@@ -68,13 +68,12 @@ namespace CustomBar
         {
             base.OnPaint(e);
             Brush b = new SolidBrush(this.ForeColor); //new brush for the background
-            LinearGradientBrush linearBrush = new LinearGradientBrush(new Rectangle(0, 0, this.Width, this.Height), Color.FromArgb(255, Color.White), Color.FromArgb(50, Color.White), LinearGradientMode.ForwardDiagonal);
-            //int width = (int)((currentTime / 100) * this.Width);
-            int oneSecond = this.Width / songLength;
-            int width = oneSecond * currentTime;
+            LinearGradientBrush linearBrush = new LinearGradientBrush(new Rectangle(0, 0, this.Width, this.Height), Color.FromArgb(255, Color.Red), Color.FromArgb(200, Color.Black), LinearGradientMode.ForwardDiagonal);
+            decimal result = ((decimal)currentTime / (decimal)songLength); //gets the percentage value
+            int width = (int)(this.Width * result); //paints the bar to the percentage value
 
-            e.Graphics.FillRectangle(b, 0, 0, width, this.Height);
-            e.Graphics.FillRectangle(linearBrush, 0, 0, width, this.Height);
+            e.Graphics.FillRectangle(b, 0, 0, width, this.Height); //paints background bar
+            e.Graphics.FillRectangle(linearBrush, 0, 0, width, this.Height); //paints current time bar
             b.Dispose();
             linearBrush.Dispose();
         }

@@ -53,7 +53,6 @@ namespace MusicApplication
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.timeLabel = new System.Windows.Forms.Label();
             this.zeroLabel = new System.Windows.Forms.Label();
-            this.progressBarCustom1 = new CustomBar.ProgressBarCustom();
             ((System.ComponentModel.ISupportInitialize)(this.objectListView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -269,24 +268,11 @@ namespace MusicApplication
             this.zeroLabel.TabIndex = 13;
             this.zeroLabel.Text = "0.00";
             // 
-            // progressBarCustom1
-            // 
-            this.progressBarCustom1.BackColor = System.Drawing.SystemColors.Window;
-            this.progressBarCustom1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.progressBarCustom1.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.progressBarCustom1.Location = new System.Drawing.Point(501, 413);
-            this.progressBarCustom1.maxTime = 120;
-            this.progressBarCustom1.Name = "progressBarCustom1";
-            this.progressBarCustom1.Size = new System.Drawing.Size(595, 36);
-            this.progressBarCustom1.TabIndex = 14;
-            this.progressBarCustom1.value = 120;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1166, 461);
-            this.Controls.Add(this.progressBarCustom1);
             this.Controls.Add(this.zeroLabel);
             this.Controls.Add(this.timeLabel);
             this.Controls.Add(this.progressBar1);
@@ -330,7 +316,6 @@ namespace MusicApplication
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Label timeLabel;
         private System.Windows.Forms.Label zeroLabel;
-        private CustomBar.ProgressBarCustom progressBarCustom1;
     }
 }
 
