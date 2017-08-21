@@ -55,8 +55,8 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
-    <Reference Include="MACTrackBarLib">
-      <HintPath>..\MAC_Slider_src\MAC_Slider_C_Sharp_src\MACTrackBarLib\bin\Debug\MACTrackBarLib.dll</HintPath>
+    <Reference Include="MusicPlayArea">
+      <HintPath>..\MusicPlayArea\bin\Debug\MusicPlayArea.dll</HintPath>
     </Reference>
     <Reference Include="NAudio, Version=1.8.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\NAudio.1.8.2\lib\net35\NAudio.dll</HintPath>

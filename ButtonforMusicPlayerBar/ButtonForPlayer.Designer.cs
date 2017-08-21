@@ -1,6 +1,6 @@
-﻿namespace CustomBar
+﻿namespace ButtonforMusicPlayerBar
 {
-    partial class ProgressBarCustom
+    partial class ButtonForPlayer
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,22 +28,30 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.Button = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // ProgressBarCustom
+            // Button
+            // 
+            this.Button.Location = new System.Drawing.Point(0, 0);
+            this.Button.Name = "Button";
+            this.Button.Size = new System.Drawing.Size(45, 42);
+            this.Button.TabIndex = 0;
+            this.Button.UseVisualStyleBackColor = true;
+            // 
+            // ButtonForPlayer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.Window;
-            this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.DoubleBuffered = true;
-            this.Name = "ProgressBarCustom";
-            this.Size = new System.Drawing.Size(678, 68);
-            this.SizeChanged += new System.EventHandler(this.ProgressBarCustom_SizeChanged);
+            this.Controls.Add(this.Button);
+            this.Name = "ButtonForPlayer";
+            this.Size = new System.Drawing.Size(45, 42);
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
+        private System.Windows.Forms.Button Button;
     }
 }

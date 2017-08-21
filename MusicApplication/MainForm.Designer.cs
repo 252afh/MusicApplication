@@ -30,6 +30,7 @@ namespace MusicApplication
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.AddToLocalLibBtn = new System.Windows.Forms.Button();
             this.openFileDialogLocal = new System.Windows.Forms.OpenFileDialog();
             this.button1 = new System.Windows.Forms.Button();
@@ -50,9 +51,8 @@ namespace MusicApplication
             this.APIButton = new System.Windows.Forms.Button();
             this.LocalButton = new System.Windows.Forms.Button();
             this.HomePageButton = new System.Windows.Forms.Button();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.timeLabel = new System.Windows.Forms.Label();
-            this.zeroLabel = new System.Windows.Forms.Label();
+            this.musicArea1 = new MusicPlayArea.MusicArea();
+            this.songTimer = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.objectListView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -243,39 +243,28 @@ namespace MusicApplication
             this.HomePageButton.MouseLeave += new System.EventHandler(this.MouseExit);
             this.HomePageButton.MouseUp += new System.Windows.Forms.MouseEventHandler(this.MouseUnClicked);
             // 
-            // progressBar1
+            // musicArea1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(213, 84);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(515, 14);
-            this.progressBar1.TabIndex = 11;
+            this.musicArea1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.musicArea1.Location = new System.Drawing.Point(205, 49);
+            this.musicArea1.maxTime = 6;
+            this.musicArea1.Name = "musicArea1";
+            this.musicArea1.Size = new System.Drawing.Size(523, 84);
+            this.musicArea1.TabIndex = 14;
+            this.musicArea1.value = 5;
             // 
-            // timeLabel
+            // songTimer
             // 
-            this.timeLabel.AutoSize = true;
-            this.timeLabel.Location = new System.Drawing.Point(734, 84);
-            this.timeLabel.Name = "timeLabel";
-            this.timeLabel.Size = new System.Drawing.Size(28, 13);
-            this.timeLabel.TabIndex = 12;
-            this.timeLabel.Text = "0.00";
-            // 
-            // zeroLabel
-            // 
-            this.zeroLabel.AutoSize = true;
-            this.zeroLabel.Location = new System.Drawing.Point(179, 85);
-            this.zeroLabel.Name = "zeroLabel";
-            this.zeroLabel.Size = new System.Drawing.Size(28, 13);
-            this.zeroLabel.TabIndex = 13;
-            this.zeroLabel.Text = "0.00";
+            this.songTimer.Enabled = true;
+            this.songTimer.Interval = 1000;
+            this.songTimer.Tick += new System.EventHandler(this.songTimer_Tick);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1166, 461);
-            this.Controls.Add(this.zeroLabel);
-            this.Controls.Add(this.timeLabel);
-            this.Controls.Add(this.progressBar1);
+            this.Controls.Add(this.musicArea1);
             this.Controls.Add(this.objectListView);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.AddToLocalLibBtn);
@@ -312,10 +301,8 @@ namespace MusicApplication
         private BrightIdeasSoftware.OLVColumn FilePathObject;
         private BrightIdeasSoftware.OLVColumn KeyObject;
         private BrightIdeasSoftware.OLVColumn AlbumObject;
-        private XComponent.SliderBar.MACTrackBar macTrackBar1;
-        private System.Windows.Forms.ProgressBar progressBar1;
-        private System.Windows.Forms.Label timeLabel;
-        private System.Windows.Forms.Label zeroLabel;
+        private MusicPlayArea.MusicArea musicArea1;
+        private System.Windows.Forms.Timer songTimer;
     }
 }
 

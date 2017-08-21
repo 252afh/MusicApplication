@@ -150,6 +150,7 @@ namespace MusicApplication
 
             if (!(winmp.playState == WMPPlayState.wmppsStopped || winmp.playState == WMPPlayState.wmppsUndefined))
             {
+                songTimer.Stop();
                 winmp.controls.stop();
             }
 
@@ -157,23 +158,26 @@ namespace MusicApplication
 
             foreach (OLVListItem rowObject in selectedRow) //will be able to play multiple now
             {
+                songTimer = new Timer();
                 LocalAudioItem rowItem = (LocalAudioItem)rowObject.RowObject;
-                int lengthInt = (int.Parse(rowItem.readerLength.ToString().Split('.')[0]) * 60) + int.Parse(rowItem.readerLength.ToString().Split('.')[1]);
 
                 switch (rowItem.readerFileExtension)
                 {
                     case ".wmv":
                         winmp.URL = rowItem.readerFilePath;
-                        string[] splitLength = rowItem.readerLength.ToString().Split('.');
-                        int length = (int.Parse(splitLength[0]) * 60) + int.Parse(splitLength[1]);
-                        progressBar1.Value = 0;
-                        progressBar1.Maximum = (int)rowItem.readerLength * 60;
-                        timeLabel.Text = (rowItem.readerLength * 60).ToString();
+                        musicArea1.value = 0;
+                        musicArea1.maxTime = (int)rowItem.readerLength;
+                        songTimer.Start();
                         winmp.controls.play();
                         break;
                 }
             }
             
+        }
+
+        private void songTimer_Tick(object sender, EventArgs e)
+        {
+            musicArea1.value = musicArea1.value + 1;
         }
     }
 }
