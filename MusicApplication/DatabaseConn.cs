@@ -35,7 +35,9 @@ namespace MusicApplication
                 {
                     dropTableCommand.Connection = connection;
                     dropTableCommand.CommandText = "DROP TABLE LocalMusicTable";
+                    connection.Open();
                     dropTableCommand.ExecuteNonQuery();
+                    connection.Close();
                 }
             }
         }
@@ -151,13 +153,9 @@ namespace MusicApplication
                     {
                         return false;
                     }
-                    else
-                    {
-                        return true;
-                    }
                 }
             }
-            return false;
+            return true;
         }
 
         private int GetRowCount()
@@ -183,39 +181,39 @@ namespace MusicApplication
         public ArrayList GetSongsFromTable()
         {
             ArrayList audioItemList = new ArrayList();
-            //if (GetRowCount() > 0)
-            //{
-            //    using (connection = new SQLiteConnection("Data Source=LocalDatabase.sqlite3"))
-            //    {
-            //        using (SQLiteCommand getFromTableCommand = new SQLiteCommand())
-            //        {
-            //            getFromTableCommand.Connection = connection;
-            //            getFromTableCommand.CommandText = ("SELECT * FROM LocalMusicTable");
+            if (GetRowCount() > 0)
+            {
+                using (connection = new SQLiteConnection("Data Source=LocalDatabase.sqlite3"))
+                {
+                    using (SQLiteCommand getFromTableCommand = new SQLiteCommand())
+                    {
+                        getFromTableCommand.Connection = connection;
+                        getFromTableCommand.CommandText = ("SELECT * FROM LocalMusicTable");
 
-            //            if (connection.State != System.Data.ConnectionState.Open)
-            //            {
-            //                connection.Open();
-            //            }
+                        if (connection.State != System.Data.ConnectionState.Open)
+                        {
+                            connection.Open();
+                        }
 
-            //            SQLiteDataReader reader = getFromTableCommand.ExecuteReader();
-            //            while (reader.Read())
-            //            {
-            //                long readerId = (Int64)reader["Id"];
-            //                string readerTitle = reader["Title"].ToString();
-            //                string readerArtist = reader["Artist"].ToString();
-            //                string readerAlbum = reader["Album"].ToString();
-            //                string readerPlaylist = reader["PlayList"].ToString();
-            //                int readerLength = (int)reader["Length"];
-            //                string readerGenre = reader["Genre"].ToString();
-            //                int readerPlays = (int)reader["Plays"];
-            //                string readerFileExtension = reader["FileExtension"].ToString();
-            //                string readerFilePath = reader["FilePath"].ToString();
-            //                LocalAudioItem audioItem = new LocalAudioItem(readerId, readerTitle, readerArtist, readerAlbum, readerPlaylist, readerLength, readerGenre, readerPlays, readerFileExtension, readerFilePath);
-            //                audioItemList.Add(audioItem);
-            //            }
-            //        }
-            //    }
-            //}
+                        SQLiteDataReader reader = getFromTableCommand.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            long readerId = (Int64)reader["Id"];
+                            string readerTitle = reader["Title"].ToString();
+                            string readerArtist = reader["Artist"].ToString();
+                            string readerAlbum = reader["Album"].ToString();
+                            string readerPlaylist = reader["PlayList"].ToString();
+                            int readerLength = (int)reader["Length"];
+                            string readerGenre = reader["Genre"].ToString();
+                            int readerPlays = (int)reader["Plays"];
+                            string readerFileExtension = reader["FileExtension"].ToString();
+                            string readerFilePath = reader["FilePath"].ToString();
+                            LocalAudioItem audioItem = new LocalAudioItem(readerId, readerTitle, readerArtist, readerAlbum, readerPlaylist, readerLength, readerGenre, readerPlays, readerFileExtension, readerFilePath);
+                            audioItemList.Add(audioItem);
+                        }
+                    }
+                }
+            }
             return audioItemList;
         }
     }
