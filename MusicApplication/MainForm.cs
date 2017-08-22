@@ -177,7 +177,7 @@ namespace MusicApplication
 
         private void songTimer_Tick(object sender, EventArgs e)
         {
-            musicArea1.value = musicArea1.value + 1;
+           musicArea1.value = musicArea1.value + 1;
         }
     }
 }
