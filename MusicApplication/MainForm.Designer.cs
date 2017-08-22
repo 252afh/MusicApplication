@@ -51,8 +51,8 @@ namespace MusicApplication
             this.APIButton = new System.Windows.Forms.Button();
             this.LocalButton = new System.Windows.Forms.Button();
             this.HomePageButton = new System.Windows.Forms.Button();
-            this.musicArea1 = new MusicPlayArea.MusicArea();
             this.songTimer = new System.Windows.Forms.Timer(this.components);
+            this.musicArea1 = new MusicPlayArea.MusicArea();
             ((System.ComponentModel.ISupportInitialize)(this.objectListView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -243,21 +243,21 @@ namespace MusicApplication
             this.HomePageButton.MouseLeave += new System.EventHandler(this.MouseExit);
             this.HomePageButton.MouseUp += new System.Windows.Forms.MouseEventHandler(this.MouseUnClicked);
             // 
-            // musicArea1
-            // 
-            this.musicArea1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.musicArea1.Location = new System.Drawing.Point(205, 49);
-            this.musicArea1.maxTime = 6;
-            this.musicArea1.Name = "musicArea1";
-            this.musicArea1.Size = new System.Drawing.Size(523, 84);
-            this.musicArea1.TabIndex = 14;
-            this.musicArea1.value = 5;
-            // 
             // songTimer
             // 
             this.songTimer.Enabled = true;
             this.songTimer.Interval = 1000;
             this.songTimer.Tick += new System.EventHandler(this.songTimer_Tick);
+            // 
+            // musicArea1
+            // 
+            this.musicArea1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.musicArea1.Location = new System.Drawing.Point(291, 57);
+            this.musicArea1.maxTime = 1;
+            this.musicArea1.Name = "musicArea1";
+            this.musicArea1.Size = new System.Drawing.Size(495, 84);
+            this.musicArea1.TabIndex = 11;
+            this.musicArea1.value = 0;
             // 
             // MainForm
             // 
@@ -301,8 +301,8 @@ namespace MusicApplication
         private BrightIdeasSoftware.OLVColumn FilePathObject;
         private BrightIdeasSoftware.OLVColumn KeyObject;
         private BrightIdeasSoftware.OLVColumn AlbumObject;
-        private MusicPlayArea.MusicArea musicArea1;
         private System.Windows.Forms.Timer songTimer;
+        private MusicPlayArea.MusicArea musicArea1;
     }
 }
 

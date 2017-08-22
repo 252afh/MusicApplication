@@ -13,6 +13,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomBar", "CustomBar\CustomBar.csproj", "{4065A508-91FF-4B17-ACA1-87B87DE3D10A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicPlayArea", "MusicPlayArea\MusicPlayArea.csproj", "{BDD0885E-174A-4571-A9A0-D3B458CED0B3}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A96DF0B1-4128-4530-8B25-286EAC12B0FB} = {A96DF0B1-4128-4530-8B25-286EAC12B0FB}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ButtonforMusicPlayerBar", "ButtonforMusicPlayerBar\ButtonforMusicPlayerBar.csproj", "{A96DF0B1-4128-4530-8B25-286EAC12B0FB}"
 EndProject
