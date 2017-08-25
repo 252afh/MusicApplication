@@ -252,7 +252,7 @@ namespace MusicApplication
             // musicArea1
             // 
             this.musicArea1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.musicArea1.Location = new System.Drawing.Point(291, 57);
+            this.musicArea1.Location = new System.Drawing.Point(319, 57);
             this.musicArea1.maxTime = 1;
             this.musicArea1.Name = "musicArea1";
             this.musicArea1.Size = new System.Drawing.Size(495, 84);

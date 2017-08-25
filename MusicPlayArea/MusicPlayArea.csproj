@@ -74,5 +74,44 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Pause_Grey.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Pause_Red.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Play_Grey.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Play_Red.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Replay_Grey.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Replay_Red.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rewind Red.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rewing_Grey.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Shuffle_Grey.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Shuffle_Red.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Stop_Grey.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Stop_Red.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Play_Grey1.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

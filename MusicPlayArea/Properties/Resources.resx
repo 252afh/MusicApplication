@@ -117,4 +117,44 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="Pause_Grey" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Pause_Grey.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Play_Red" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Play_Red.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Play_Grey" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Play_Grey.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Pause_Red" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Pause_Red.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Stop_Grey" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Stop_Grey.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Rewind Red" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Rewind Red.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Stop_Red" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Stop_Red.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Replay_Red" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Replay_Red.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Rewing_Grey" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Rewing_Grey.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Replay_Grey" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Replay_Grey.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Shuffle_Red" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Shuffle_Red.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Shuffle_Grey" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Shuffle_Grey.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Play_Grey1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Play_Grey1.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>
