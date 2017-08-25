@@ -10,7 +10,7 @@ namespace ButtonforMusicPlayerBar
         /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
-
+        Image image;
         /// <summary> 
         /// Clean up any resources being used.
         /// </summary>
@@ -22,6 +22,23 @@ namespace ButtonforMusicPlayerBar
                 components.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public Image BackgroundImageNew
+        {
+            get
+            {
+                return image;
+            }
+
+            set
+            {
+                image = value;
+                Button.BackgroundImage = image;
+                this.Button.Image = image;
+                Button.Image = image;
+                this.Invalidate();
+            }
         }
 
         protected override void OnPaint(PaintEventArgs e)
@@ -49,16 +66,18 @@ namespace ButtonforMusicPlayerBar
             // 
             // Button
             // 
+            this.Button.BackColor = System.Drawing.Color.Transparent;
             this.Button.Location = new System.Drawing.Point(0, 0);
             this.Button.Name = "Button";
             this.Button.Size = new System.Drawing.Size(50, 20);
             this.Button.TabIndex = 0;
-            this.Button.UseVisualStyleBackColor = true;
+            this.Button.UseVisualStyleBackColor = false;
             // 
             // ButtonForPlayer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.Button);
             this.Name = "ButtonForPlayer";
             this.Size = new System.Drawing.Size(50, 20);

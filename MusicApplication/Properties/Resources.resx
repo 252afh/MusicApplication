@@ -127,4 +127,40 @@
   <data name="homepage yellow" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\homepage yellow.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Pause_Grey" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BarIcons\Pause_Grey.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Pause_Red" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BarIcons\Pause_Red.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Play_Grey" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BarIcons\Play_Grey.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Play_Red" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BarIcons\Play_Red.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Replay_Grey" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BarIcons\Replay_Grey.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Replay_Red" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BarIcons\Replay_Red.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Rewind_Red" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BarIcons\Rewind Red.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Rewing_Grey" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BarIcons\Rewing_Grey.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Shuffle_Grey" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BarIcons\Shuffle_Grey.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Shuffle_Red" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BarIcons\Shuffle_Red.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Stop_Grey" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BarIcons\Stop_Grey.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Stop_Red" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BarIcons\Stop_Red.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>
