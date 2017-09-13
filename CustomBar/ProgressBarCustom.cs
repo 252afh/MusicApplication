@@ -21,7 +21,7 @@ namespace CustomBar
         protected int currentTime = 0; //current song time
         protected int songLength = 1; //total song time
 
-        public int value
+        public int Value
         {
             get
             {
@@ -36,7 +36,7 @@ namespace CustomBar
             }
         }
 
-        public int maxTime
+        public int MaxTime
         {
             get
             {

@@ -1,19 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data.SQLite;
-using System.IO;
-using System.Collections;
+﻿// <copyright file="DatabaseConn.cs" company="Emoore">
+//   Copyright © EMoore. All rights reserved.
+// </copyright>
 
 namespace MusicApplication
 {
-    class DatabaseConn
+    using System;
+    using System.Collections;
+    using System.Data.SQLite;
+    using System.IO;
+
+    /// <summary>
+    /// Handles the connections to the SQLite database
+    /// </summary>
+    public class DatabaseConn
     {
+        /// <summary>
+        /// Connection to the database
+        /// </summary>
         private static SQLiteConnection connection;
+
+        /// <summary>
+        /// List to contain the songs
+        /// </summary>
         private static ArrayList itemList;
 
+        /// <summary>
+        /// Initialises a new instance of the <see cref="DatabaseConn"/> class
+        /// </summary>
         public DatabaseConn()
         {
             itemList = new ArrayList();
@@ -27,21 +40,9 @@ namespace MusicApplication
             CreateTable();
         }
 
-        public void dropTable()
-        {
-            using (connection = new SQLiteConnection("Data Source=LocalDatabase.sqlite3"))
-            {
-                using (SQLiteCommand dropTableCommand = new SQLiteCommand())
-                {
-                    dropTableCommand.Connection = connection;
-                    dropTableCommand.CommandText = "DROP TABLE LocalMusicTable";
-                    connection.Open();
-                    dropTableCommand.ExecuteNonQuery();
-                    connection.Close();
-                }
-            }
-        }
-
+        /// <summary>
+        /// Creates the table to hold the music in the SQLite database
+        /// </summary>
         public static void CreateTable()
         {
             using (connection = new SQLiteConnection("Data Source=LocalDatabase.sqlite3"))
@@ -56,6 +57,7 @@ namespace MusicApplication
                     connection.Close();
                 }
             }
+
             using (connection = new SQLiteConnection("Data Source=LocalDatabase.sqlite3"))
             {
                 using (SQLiteCommand createTableCommand = new SQLiteCommand())
@@ -77,14 +79,45 @@ namespace MusicApplication
                     {
                         connection.Open();
                     }
+
                     createTableCommand.ExecuteNonQuery();
                 }
             }
         }
 
+        /// <summary>
+        /// Deletes the table contents
+        /// </summary>
+        public void DropTable()
+        {
+            using (connection = new SQLiteConnection("Data Source=LocalDatabase.sqlite3"))
+            {
+                using (SQLiteCommand dropTableCommand = new SQLiteCommand())
+                {
+                    dropTableCommand.Connection = connection;
+                    dropTableCommand.CommandText = "DROP TABLE LocalMusicTable";
+                    connection.Open();
+                    dropTableCommand.ExecuteNonQuery();
+                    connection.Close();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Adds a song to the song table
+        /// </summary>
+        /// <param name="title">Title of the song</param>
+        /// <param name="artist">Artist of the song</param>
+        /// <param name="album">Album of the song</param>
+        /// <param name="playlist">Playlist the song belong to</param>
+        /// <param name="length">Length of the song</param>
+        /// <param name="genre">Genre of the song</param>
+        /// <param name="plays">Number of plays of the song</param>
+        /// <param name="fileExtension">The file type of the song</param>
+        /// <param name="filePath">The location of the song</param>
+        /// <returns>Returns the message to display, whether the song has been successfully added or not</returns>
         public string AddSongToTable(string title, string artist, string album, string playlist, int length, string genre, int plays, string fileExtension, string filePath)
         {
-            
             SQLiteParameter paramTitle = new SQLiteParameter("@paramTitle") { Value = title };
             SQLiteParameter paramArtist = new SQLiteParameter("@paramArtist") { Value = artist };
             SQLiteParameter paramAlbum = new SQLiteParameter("@paramAlbum") { Value = album };
@@ -95,7 +128,7 @@ namespace MusicApplication
             SQLiteParameter paramExtension = new SQLiteParameter("@paramExtension") { Value = fileExtension };
             SQLiteParameter paramPath = new SQLiteParameter("@paramPath") { Value = filePath };
 
-            bool notExist = CheckNotExists(filePath);
+            bool notExist = this.CheckNotExists(filePath);
             
             if (notExist)
             {
@@ -128,10 +161,59 @@ namespace MusicApplication
             {
                 return "That song already exists at that file location.";
             }
-            return "";
-            
+
+            return string.Empty;
         }
 
+        /// <summary>
+        /// Creates an array list containing all the songs in the table then returns them
+        /// </summary>
+        /// <returns>The array list containing all the songs in the table</returns>
+        public ArrayList GetSongsFromTable()
+        {
+            ArrayList audioItemList = new ArrayList();
+            if (this.GetRowCount() > 0)
+            {
+                using (connection = new SQLiteConnection("Data Source=LocalDatabase.sqlite3"))
+                {
+                    using (SQLiteCommand getFromTableCommand = new SQLiteCommand())
+                    {
+                        getFromTableCommand.Connection = connection;
+                        getFromTableCommand.CommandText = "SELECT * FROM LocalMusicTable";
+
+                        if (connection.State != System.Data.ConnectionState.Open)
+                        {
+                            connection.Open();
+                        }
+
+                        SQLiteDataReader reader = getFromTableCommand.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            long readerId = (long)reader["Id"];
+                            string readerTitle = reader["Title"].ToString();
+                            string readerArtist = reader["Artist"].ToString();
+                            string readerAlbum = reader["Album"].ToString();
+                            string readerPlaylist = reader["PlayList"].ToString();
+                            int readerLength = (int)reader["Length"];
+                            string readerGenre = reader["Genre"].ToString();
+                            int readerPlays = (int)reader["Plays"];
+                            string readerFileExtension = reader["FileExtension"].ToString();
+                            string readerFilePath = reader["FilePath"].ToString();
+                            LocalAudioItem audioItem = new LocalAudioItem(readerId, readerTitle, readerArtist, readerAlbum, readerPlaylist, readerLength, readerGenre, readerPlays, readerFileExtension, readerFilePath);
+                            audioItemList.Add(audioItem);
+                        }
+                    }
+                }
+            }
+
+            return audioItemList;
+        }
+
+        /// <summary>
+        /// Checks whether the song exists in the table already or not
+        /// </summary>
+        /// <param name="filepath">The file location of the song to check</param>
+        /// <returns>Whether the song exists already or not</returns>
         private bool CheckNotExists(string filepath)
         {
             using (connection = new SQLiteConnection("Data Source=LocalDatabase.sqlite3"))
@@ -155,9 +237,14 @@ namespace MusicApplication
                     }
                 }
             }
+
             return true;
         }
 
+        /// <summary>
+        /// Gets the amount of items in the song table
+        /// </summary>
+        /// <returns>The number of songs in the song table</returns>
         private int GetRowCount()
         {
             int count = 0;
@@ -166,55 +253,18 @@ namespace MusicApplication
                 using (SQLiteCommand getRowCountCommand = new SQLiteCommand())
                 {
                     getRowCountCommand.Connection = connection;
-                    getRowCountCommand.CommandText = "SELECT COUNT(Id)" + (" FROM LocalMusicTable");
+                    getRowCountCommand.CommandText = "SELECT COUNT(Id)" + " FROM LocalMusicTable";
 
                     if (connection.State != System.Data.ConnectionState.Open)
                     {
                         connection.Open();
                     }
+
                     count = Convert.ToInt32(getRowCountCommand.ExecuteScalar());
                 }
             }
+
             return count;
-        }
-
-        public ArrayList GetSongsFromTable()
-        {
-            ArrayList audioItemList = new ArrayList();
-            if (GetRowCount() > 0)
-            {
-                using (connection = new SQLiteConnection("Data Source=LocalDatabase.sqlite3"))
-                {
-                    using (SQLiteCommand getFromTableCommand = new SQLiteCommand())
-                    {
-                        getFromTableCommand.Connection = connection;
-                        getFromTableCommand.CommandText = ("SELECT * FROM LocalMusicTable");
-
-                        if (connection.State != System.Data.ConnectionState.Open)
-                        {
-                            connection.Open();
-                        }
-
-                        SQLiteDataReader reader = getFromTableCommand.ExecuteReader();
-                        while (reader.Read())
-                        {
-                            long readerId = (Int64)reader["Id"];
-                            string readerTitle = reader["Title"].ToString();
-                            string readerArtist = reader["Artist"].ToString();
-                            string readerAlbum = reader["Album"].ToString();
-                            string readerPlaylist = reader["PlayList"].ToString();
-                            int readerLength = (int)reader["Length"];
-                            string readerGenre = reader["Genre"].ToString();
-                            int readerPlays = (int)reader["Plays"];
-                            string readerFileExtension = reader["FileExtension"].ToString();
-                            string readerFilePath = reader["FilePath"].ToString();
-                            LocalAudioItem audioItem = new LocalAudioItem(readerId, readerTitle, readerArtist, readerAlbum, readerPlaylist, readerLength, readerGenre, readerPlays, readerFileExtension, readerFilePath);
-                            audioItemList.Add(audioItem);
-                        }
-                    }
-                }
-            }
-            return audioItemList;
         }
     }
 }

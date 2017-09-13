@@ -1,84 +1,370 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿// <copyright file="MusicArea.cs" company="Emoore">
+//   Copyright © EMoore. All rights reserved.
+// </copyright>
 
 namespace MusicPlayArea
 {
+    using System;
+    using System.Drawing;
+    using System.Windows.Forms;
+
+    /// <summary>
+    /// The music area to display information about the local music playing
+    /// </summary>
     public partial class MusicArea : UserControl
     {
+        /// <summary>
+        /// current song time
+        /// </summary>
+        private int currentTime = 0;
 
-        protected int currentTime = 0; //current song time
-        protected int songLength = 1; //total song time
+        /// <summary>
+        /// total song time
+        /// </summary>
+        private int songLength = 1;
 
+        /// <summary>
+        /// Play button not hovered image
+        /// </summary>
+        private Image playImageNotHovered;
+
+        /// <summary>
+        /// Play button hovered image
+        /// </summary>
+        private Image playImageHovered;
+
+        /// <summary>
+        /// Pause button not hovered image
+        /// </summary>
+        private Image pauseImageNotHovered;
+
+        /// <summary>
+        /// Pause button hovered image
+        /// </summary>
+        private Image pauseImageHovered;
+
+        /// <summary>
+        /// Stop button not hovered image
+        /// </summary>
+        private Image stopImageNotHovered;
+
+        /// <summary>
+        /// Stop button hovered image
+        /// </summary>
+        private Image stopImageHovered;
+
+        /// <summary>
+        /// Shuffle button not hovered image
+        /// </summary>
+        private Image shuffleImageNotHovered;
+
+        /// <summary>
+        /// Shuffle button hovered image
+        /// </summary>
+        private Image shuffleImageHovered;
+
+        /// <summary>
+        /// Replay button not hovered image
+        /// </summary>
+        private Image replayImageNotHovered;
+
+        /// <summary>
+        /// Replay button hovered image
+        /// </summary>
+        private Image replayImageHovered;
+
+        /// <summary>
+        /// Play all button not hovered image
+        /// </summary>
+        private Image playAllImageNotHovered;
+
+        /// <summary>
+        /// Play all button hovered image
+        /// </summary>
+        private Image playAllImageHovered;
+
+        /// <summary>
+        /// Initialises a new instance of the <see cref="MusicArea"/> class
+        /// </summary>
         public MusicArea()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
 
-        public int value
+        /// <summary>
+        /// Gets or sets the play button not hovered image
+        /// </summary>
+        public Image PlayImageNotHovered
         {
             get
             {
-                return currentTime;
+                return this.playImageNotHovered;
             }
 
             set
             {
-                if (value < 0) value = 0; //if less than 0 then 0
-                else if (value > songLength) value = songLength; //if longer than song then songlength
-                currentTime = value;
-                progressBarCustom1.value = currentTime;
-
-                int currentMinutes = (int)(Math.Floor(currentTime / 60.0)); //gets the minutes of the current place
-                int currentSeconds = (int)(currentTime % 60); //gets the seconds of the current place
-                string labelText = currentMinutes.ToString() + "." + currentSeconds.ToString(); //interpolate the string
-                label1.Text = labelText; //assigns the text
+                this.PlayButton.NotHoverImage = value;
                 this.Invalidate();
             }
         }
 
-        public int maxTime
+        /// <summary>
+        /// Gets or sets the play button hovered image
+        /// </summary>
+        public Image PlayImageHovered
         {
             get
             {
-                return songLength;
+                return this.playImageHovered;
             }
 
             set
             {
-                songLength = value;
-                int songMinutes;
-                if (songLength >= 60)
+                this.PlayButton.OnHoverImage = value;
+                this.Invalidate();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the pause button not hovered image
+        /// </summary>
+        public Image PauseImageNotHovered
+        {
+            get
+            {
+                return this.pauseImageNotHovered;
+            }
+
+            set
+            {
+                this.PauseButton.NotHoverImage = value;
+                this.Invalidate();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the pause button hovered image
+        /// </summary>
+        public Image PauseImageHovered
+        {
+            get
+            {
+                return this.pauseImageNotHovered;
+            }
+
+            set
+            {
+                this.PauseButton.OnHoverImage = value;
+                this.Invalidate();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the stop button not hovered image
+        /// </summary>
+        public Image StopImageNotHovered
+        {
+            get
+            {
+                return this.stopImageNotHovered;
+            }
+
+            set
+            {
+                this.StopButton.NotHoverImage = value;
+                this.Invalidate();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the stop button hovered image
+        /// </summary>
+        public Image StopImageHovered
+        {
+            get
+            {
+                return this.stopImageHovered;
+            }
+
+            set
+            {
+                this.StopButton.OnHoverImage = value;
+                this.Invalidate();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the shuffle button not hovered image
+        /// </summary>
+        public Image ShuffleImageNotHovered
+        {
+            get
+            {
+                return this.shuffleImageNotHovered;
+            }
+
+            set
+            {
+                this.ShuffleButton.NotHoverImage = value;
+                this.Invalidate();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the shuffle button hovered image
+        /// </summary>
+        public Image ShuffleImageHovered
+        {
+            get
+            {
+                return this.shuffleImageHovered;
+            }
+
+            set
+            {
+                this.ShuffleButton.OnHoverImage = value;
+                this.Invalidate();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the replay button not hovered image
+        /// </summary>
+        public Image ReplayImageNotHovered
+        {
+            get
+            {
+                return this.replayImageNotHovered;
+            }
+
+            set
+            {
+                this.ReplayButton.NotHoverImage = value;
+                this.Invalidate();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the replay button hovered image
+        /// </summary>
+        public Image ReplayImageHovered
+        {
+            get
+            {
+                return this.replayImageNotHovered;
+            }
+
+            set
+            {
+                this.ReplayButton.OnHoverImage = value;
+                this.Invalidate();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the play all button not hovered image
+        /// </summary>
+        public Image PlayAllImageNotHovered
+        {
+            get
+            {
+                return this.playAllImageNotHovered;
+            }
+
+            set
+            {
+                this.PlayAllButton.NotHoverImage = value;
+                this.Invalidate();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the play all button hovered image
+        /// </summary>
+        public Image PlayAllImageHovered
+        {
+            get
+            {
+                return this.playAllImageHovered;
+            }
+
+            set
+            {
+                this.PlayAllButton.OnHoverImage = value;
+                this.Invalidate();
+            }
+        }
+        
+        /// <summary>
+        /// Gets or sets the current time the player is at
+        /// </summary>
+        public int Value
+        {
+            get
+            {
+                return this.currentTime;
+            }
+
+            set
+            {
+                if (value < 0)
                 {
-                    songMinutes = (int)(Math.Floor(songLength / 60.0));
+                    value = 0;
+                }
+                else if (value > this.songLength)
+                {
+                    value = this.songLength;
+                }
+
+                this.currentTime = value;
+                progressBarCustom1.Value = this.currentTime;
+
+                int currentMinutes = (int)Math.Floor(this.currentTime / 60.0);
+                int currentSeconds = (int)(this.currentTime % 60);
+                string labelText = currentMinutes.ToString() + "." + currentSeconds.ToString();
+                label1.Text = labelText;
+                this.Invalidate();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the total length of the song
+        /// </summary>
+        public int MaxTime
+        {
+            get
+            {
+                return this.songLength;
+            }
+
+            set
+            {
+                this.songLength = value;
+                int songMinutes;
+                if (this.songLength >= 60)
+                {
+                    songMinutes = (int)Math.Floor(this.songLength / 60.0);
                 }
                 else
                 {
                     songMinutes = 0;
                 }
-                int songSeconds = (int)(songLength % 60);
+
+                int songSeconds = (int)(this.songLength % 60);
                 string maximumText = songMinutes.ToString() + "." + songSeconds.ToString();
                 label2.Text = maximumText;
-                progressBarCustom1.maxTime = songLength;
+                progressBarCustom1.MaxTime = this.songLength;
                 this.Invalidate();
             }
         }
 
-        //protected override void OnPaint(PaintEventArgs e)
-        //{
-        //    base.OnPaint(e);
-        //}
-
+        /// <summary>
+        /// Redraws the music area when the size is changed
+        /// </summary>
+        /// <param name="sender">The sender object</param>
+        /// <param name="e">The context of the call</param>
         private void MusicArea_SizeChanged(object sender, EventArgs e)
         {
-            //label1.Location = new Point(this.Width / 2 - 21 / 2 - 4, this.Height / 2 - 15 / 2);
-            //label2.Location = new Point(this.Width - label2.Width - 10, this.Height / 2 - label2.Height);
             this.Invalidate();
         }
     }

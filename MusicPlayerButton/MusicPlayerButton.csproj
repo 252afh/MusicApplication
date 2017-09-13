@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{BDD0885E-174A-4571-A9A0-D3B458CED0B3}</ProjectGuid>
+    <ProjectGuid>{B08458FD-2A52-4495-B367-69DF56135D0B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MusicPlayArea</RootNamespace>
-    <AssemblyName>MusicPlayArea</AssemblyName>
+    <RootNamespace>MusicPlayerButton</RootNamespace>
+    <AssemblyName>MusicPlayerButton</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -43,11 +43,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MusicArea.cs">
+    <Compile Include="MusicButton.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="MusicArea.Designer.cs">
-      <DependentUpon>MusicArea.cs</DependentUpon>
+    <Compile Include="MusicButton.Designer.cs">
+      <DependentUpon>MusicButton.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -57,8 +57,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="MusicArea.resx">
-      <DependentUpon>MusicArea.cs</DependentUpon>
+    <EmbeddedResource Include="MusicButton.resx">
+      <DependentUpon>MusicButton.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -73,6 +73,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Play_Grey.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Play_Grey1.jpg" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Play_Red.jpg" />
@@ -100,19 +103,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Stop_Red.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Play_Grey1.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\CustomBar\CustomBar.csproj">
-      <Project>{4065a508-91ff-4b17-aca1-87b87de3d10a}</Project>
-      <Name>CustomBar</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MusicPlayerButton\MusicPlayerButton.csproj">
-      <Project>{b08458fd-2a52-4495-b367-69df56135d0b}</Project>
-      <Name>MusicPlayerButton</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

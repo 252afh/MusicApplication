@@ -1,0 +1,8 @@
+<StyleCopSettings Version="105">
+  <GlobalSettings>
+    <StringProperty Name="Culture">en-GB</StringProperty>
+    <CollectionProperty Name="RecognizedWords">
+      <Value>SQLite</Value>
+    </CollectionProperty>
+  </GlobalSettings>
+</StyleCopSettings>

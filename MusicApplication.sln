@@ -1,11 +1,12 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.3
+VisualStudioVersion = 15.0.26730.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicApplication", "MusicApplication\MusicApplication.csproj", "{6C6A1337-4B37-4F6E-8418-F5D99B3D7B7A}"
 	ProjectSection(ProjectDependencies) = postProject
 		{BDD0885E-174A-4571-A9A0-D3B458CED0B3} = {BDD0885E-174A-4571-A9A0-D3B458CED0B3}
+		{B08458FD-2A52-4495-B367-69DF56135D0B} = {B08458FD-2A52-4495-B367-69DF56135D0B}
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicApplication.Tests", "MusicApplication.Tests\MusicApplication.Tests.csproj", "{B0F96356-C11E-44BA-8923-5C90EE7D83B8}"
@@ -13,11 +14,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomBar", "CustomBar\CustomBar.csproj", "{4065A508-91FF-4B17-ACA1-87B87DE3D10A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicPlayArea", "MusicPlayArea\MusicPlayArea.csproj", "{BDD0885E-174A-4571-A9A0-D3B458CED0B3}"
-	ProjectSection(ProjectDependencies) = postProject
-		{A96DF0B1-4128-4530-8B25-286EAC12B0FB} = {A96DF0B1-4128-4530-8B25-286EAC12B0FB}
-	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ButtonforMusicPlayerBar", "ButtonforMusicPlayerBar\ButtonforMusicPlayerBar.csproj", "{A96DF0B1-4128-4530-8B25-286EAC12B0FB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicPlayerButton", "MusicPlayerButton\MusicPlayerButton.csproj", "{B08458FD-2A52-4495-B367-69DF56135D0B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,10 +39,10 @@ Global
 		{BDD0885E-174A-4571-A9A0-D3B458CED0B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BDD0885E-174A-4571-A9A0-D3B458CED0B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BDD0885E-174A-4571-A9A0-D3B458CED0B3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A96DF0B1-4128-4530-8B25-286EAC12B0FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A96DF0B1-4128-4530-8B25-286EAC12B0FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A96DF0B1-4128-4530-8B25-286EAC12B0FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A96DF0B1-4128-4530-8B25-286EAC12B0FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B08458FD-2A52-4495-B367-69DF56135D0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B08458FD-2A52-4495-B367-69DF56135D0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B08458FD-2A52-4495-B367-69DF56135D0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B08458FD-2A52-4495-B367-69DF56135D0B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

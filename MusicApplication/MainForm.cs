@@ -1,44 +1,74 @@
-﻿using BrightIdeasSoftware;
-using System;
-using System.IO;
-using System.Windows.Forms;
-using MusicApplication.Enums;
-using WMPLib;
-using System.Collections;
+﻿// <copyright file="MainForm.cs" company="Emoore">
+//   Copyright © EMoore. All rights reserved.
+// </copyright>
 
 namespace MusicApplication
-{ 
+{
+    using System;
+    using System.Collections;
+    using System.IO;
+    using System.Windows.Forms;
+    using BrightIdeasSoftware;
+    using MusicApplication.Enums;
+    using WMPLib;
+
+    /// <summary>
+    /// The main class for the music player UI
+    /// </summary>
     public partial class MainForm : Form
     {
-        DatabaseConn dbConn;
-        WindowsMediaPlayer winmp;
+        private DatabaseConn databaseConnection;
+        private WindowsMediaPlayer winmp;
+
+        /// <summary>
+        /// Initialises a new instance of the <see cref="MainForm"/> class
+        /// </summary>
         public MainForm()
         {
             InitializeComponent();
-            winmp = new WindowsMediaPlayer();
-            dbConn = new DatabaseConn();
-            updateTable();
-            
+            this.winmp = new WindowsMediaPlayer();
+            this.databaseConnection = new DatabaseConn();
+            this.UpdateTable();
         }
 
-        private void MouseEnter(object sender, EventArgs e)
+        /// <summary>
+        /// Executes when the mouse enters a menu button
+        /// </summary>
+        /// <param name="sender">The sender object</param>
+        /// <param name="e">The context</param>
+        private new void MouseEnter(object sender, EventArgs e)
         {
             CursorActions(sender, e, (int)CursorEnums.hovered);
         }
 
+        /// <summary>
+        /// Executes when the mouse leaves a menu button
+        /// </summary>
+        /// <param name="sender">The sender object</param>
+        /// <param name="e">The context</param>
         private void MouseExit(object sender, EventArgs e)
         {
             CursorActions(sender, e, (int)CursorEnums.unhovered);
         }
 
+        /// <summary>
+        /// Executes when the mouse button is lifted up on a menu button
+        /// </summary>
+        /// <param name="sender">The sender object</param>
+        /// <param name="e">The context</param>
         private void MouseUnClicked(object sender, MouseEventArgs e)
         {
-            MouseActions(sender, e, (int)buttonEnums.unclicked);
+            MouseActions(sender, e, (int)ButtonsEnums.unclicked);
         }
 
+        /// <summary>
+        /// Executes when the mouse button is pressed down on a menu button
+        /// </summary>
+        /// <param name="sender">The sender object</param>
+        /// <param name="e">The context</param>
         private void MousePressed(object sender, MouseEventArgs e)
         {
-            MouseActions(sender, e, (int)buttonEnums.clicked);
+            MouseActions(sender, e, (int)ButtonsEnums.clicked);
         }
 
         private void MouseActions(object sender, MouseEventArgs e, int num)
@@ -113,14 +143,14 @@ namespace MusicApplication
                 case ".wmv":
                     IWMPMedia mediainfo = winmp.newMedia(filePath); //gets file length for wmp
                     length = (int)Math.Ceiling(mediainfo.duration);
-                    string addResult = dbConn.AddSongToTable(title, artist = null, album = null, playlist = null, length, genre = null, plays, extension, filePath);
+                    string addResult = databaseConnection.AddSongToTable(title, artist = null, album = null, playlist = null, length, genre = null, plays, extension, filePath);
                     if (!string.IsNullOrEmpty(addResult))
                     {
                         MessageBox.Show(addResult);
                     }
                     else
                     {
-                        updateTable();
+                        UpdateTable();
                     }
                     break;
                 default:
@@ -129,22 +159,22 @@ namespace MusicApplication
             openFileDialogLocal.Dispose();
         }
 
-        private void updateTable()
+        private void UpdateTable()
         {
             objectListView.ClearObjects();
-            ArrayList itemList = dbConn.GetSongsFromTable();
+            ArrayList itemList = databaseConnection.GetSongsFromTable();
             foreach (LocalAudioItem audioItem in itemList)
             {
                 objectListView.AddObject(audioItem);
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Button1_Click(object sender, EventArgs e)
         {
-            dbConn.dropTable();
+            databaseConnection.DropTable();
         }
 
-        private void objectListView_MouseDoubleClick(object sender, MouseEventArgs e)
+        private void ObjectListView_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             WMPPlayState playst = winmp.playState;
 
@@ -161,12 +191,12 @@ namespace MusicApplication
                 songTimer = new Timer();
                 LocalAudioItem rowItem = (LocalAudioItem)rowObject.RowObject;
 
-                switch (rowItem.readerFileExtension)
+                switch (rowItem.ReaderFileExtension)
                 {
                     case ".wmv":
-                        winmp.URL = rowItem.readerFilePath;
-                        musicArea1.value = 0;
-                        musicArea1.maxTime = (int)rowItem.readerLength;
+                        winmp.URL = rowItem.ReaderFilePath;
+                        musicArea1.Value = 0;
+                        musicArea1.MaxTime = (int)rowItem.ReaderLength;
                         songTimer.Start();
                         winmp.controls.play();
                         break;
@@ -175,9 +205,9 @@ namespace MusicApplication
             
         }
 
-        private void songTimer_Tick(object sender, EventArgs e)
+        private void SongTimer_Tick(object sender, EventArgs e)
         {
-           musicArea1.value = musicArea1.value + 1;
+           musicArea1.Value = musicArea1.Value + 1;
         }
     }
 }

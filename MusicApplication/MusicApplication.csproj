@@ -55,9 +55,6 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
-    <Reference Include="MusicPlayArea">
-      <HintPath>..\MusicPlayArea\bin\Debug\MusicPlayArea.dll</HintPath>
-    </Reference>
     <Reference Include="NAudio, Version=1.8.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\NAudio.1.8.2\lib\net35\NAudio.dll</HintPath>
     </Reference>
@@ -192,6 +189,10 @@
     <ProjectReference Include="..\CustomBar\CustomBar.csproj">
       <Project>{4065a508-91ff-4b17-aca1-87b87de3d10a}</Project>
       <Name>CustomBar</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MusicPlayArea\MusicPlayArea.csproj">
+      <Project>{bdd0885e-174a-4571-a9a0-d3b458ced0b3}</Project>
+      <Name>MusicPlayArea</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />
