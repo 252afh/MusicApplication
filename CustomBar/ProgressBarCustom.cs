@@ -1,18 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Drawing.Drawing2D;
+﻿// <copyright file="ProgressBarCustom.cs" company="Emoore">
+//   Copyright © EMoore. All rights reserved.
+// </copyright>
 
 namespace CustomBar
 {
+    using System;
+    using System.Drawing;
+    using System.Windows.Forms;
+    using System.Drawing.Drawing2D;
+
+    /// <summary>
+    /// The progressbar user control to keep track of the time of the song
+    /// </summary>
     public partial class ProgressBarCustom : UserControl
     {
+
+
         public ProgressBarCustom()
         {
             InitializeComponent();

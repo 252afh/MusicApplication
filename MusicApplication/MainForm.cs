@@ -17,7 +17,14 @@ namespace MusicApplication
     /// </summary>
     public partial class MainForm : Form
     {
+        /// <summary>
+        /// The database connection
+        /// </summary>
         private DatabaseConn databaseConnection;
+
+        /// <summary>
+        /// An instance of the <see cref="WindowsMediaPlayer"/> class
+        /// </summary>
         private WindowsMediaPlayer winmp;
 
         /// <summary>
@@ -25,7 +32,7 @@ namespace MusicApplication
         /// </summary>
         public MainForm()
         {
-            InitializeComponent();
+            this.InitializeComponent();
             this.winmp = new WindowsMediaPlayer();
             this.databaseConnection = new DatabaseConn();
             this.UpdateTable();
@@ -38,7 +45,7 @@ namespace MusicApplication
         /// <param name="e">The context</param>
         private new void MouseEnter(object sender, EventArgs e)
         {
-            CursorActions(sender, e, (int)CursorEnums.hovered);
+            this.CursorActions(sender, e, (int)CursorEnums.hovered);
         }
 
         /// <summary>
@@ -48,7 +55,7 @@ namespace MusicApplication
         /// <param name="e">The context</param>
         private void MouseExit(object sender, EventArgs e)
         {
-            CursorActions(sender, e, (int)CursorEnums.unhovered);
+            this.CursorActions(sender, e, (int)CursorEnums.unhovered);
         }
 
         /// <summary>
@@ -58,7 +65,7 @@ namespace MusicApplication
         /// <param name="e">The context</param>
         private void MouseUnClicked(object sender, MouseEventArgs e)
         {
-            MouseActions(sender, e, (int)ButtonsEnums.unclicked);
+            this.MouseActions(sender, e, (int)ButtonsEnums.unclicked);
         }
 
         /// <summary>
@@ -68,19 +75,25 @@ namespace MusicApplication
         /// <param name="e">The context</param>
         private void MousePressed(object sender, MouseEventArgs e)
         {
-            MouseActions(sender, e, (int)ButtonsEnums.clicked);
+            this.MouseActions(sender, e, (int)ButtonsEnums.clicked);
         }
 
+        /// <summary>
+        /// Handles the actions of the mouse
+        /// </summary>
+        /// <param name="sender">The sender</param>
+        /// <param name="e">The context of the action</param>
+        /// <param name="num">Enum representing which action has been triggered</param>
         private void MouseActions(object sender, MouseEventArgs e, int num)
         {
-            Button[] ButtonList = new Button[]
+            Button[] buttonList = new Button[]
             {
-                HomePageButton,
-                LocalButton,
-                APIButton,
-                OptionButton
+                this.HomePageButton,
+                this.LocalButton,
+                this.APIButton,
+                this.OptionButton
             };
-            foreach (Button selectedButton in ButtonList)
+            foreach (Button selectedButton in buttonList)
             {
                 if (sender.Equals(selectedButton))
                 {
@@ -97,16 +110,22 @@ namespace MusicApplication
             }
         }
 
+        /// <summary>
+        /// The actions taken by the cursor
+        /// </summary>
+        /// <param name="sender">The sender</param>
+        /// <param name="e">The context of the cursor movement</param>
+        /// <param name="num">Enum representing the action the cursor has performed</param>
         private void CursorActions(object sender, EventArgs e, int num)
         {
-            Button[] ButtonList = new Button[]
+            Button[] buttonList = new Button[]
             {
                 HomePageButton,
                 LocalButton,
                 APIButton,
                 OptionButton
             };
-            foreach (Button selectedButton in ButtonList)
+            foreach (Button selectedButton in buttonList)
             {
                 if (sender.Equals(selectedButton))
                 {
@@ -123,27 +142,32 @@ namespace MusicApplication
             }
         }
 
+        /// <summary>
+        /// Adds a new song file to the local song library
+        /// </summary>
+        /// <param name="sender">The sender object</param>
+        /// <param name="e">The context of the button being pressed</param>
         private void AddToLocalLibBtn_Click(object sender, EventArgs e)
         {
-            openFileDialogLocal.InitialDirectory = "c://"; //sets initial directory
-            openFileDialogLocal.Filter = "Allowed types (.wmv,.mp3)|*.wmv;*.mp3|Video (.wmv)|*.wmv|Music(.mp3)|*.mp3|ALL Files(*.*)|*.*"; // allowed file types
+            openFileDialogLocal.InitialDirectory = "c://";
+            openFileDialogLocal.Filter = "Allowed types (.wmv,.mp3)|*.wmv;*.mp3|Video (.wmv)|*.wmv|Music(.mp3)|*.mp3|ALL Files(*.*)|*.*";
             openFileDialogLocal.FilterIndex = 1;
             DialogResult result = openFileDialogLocal.ShowDialog();
             string filePath = openFileDialogLocal.FileName;
-            string title = Path.GetFileNameWithoutExtension(filePath);  //configure file dialog
+            string title = Path.GetFileNameWithoutExtension(filePath);
             string artist = null;
             string album = null;
             string playlist = null;
             int length = 0;
             string genre = null;
             int plays = 0;
-            string extension = Path.GetExtension(filePath); //gets file extension
+            string extension = Path.GetExtension(filePath);
             switch (extension)
             {
                 case ".wmv":
-                    IWMPMedia mediainfo = winmp.newMedia(filePath); //gets file length for wmp
+                    IWMPMedia mediainfo = this.winmp.newMedia(filePath);
                     length = (int)Math.Ceiling(mediainfo.duration);
-                    string addResult = databaseConnection.AddSongToTable(title, artist = null, album = null, playlist = null, length, genre = null, plays, extension, filePath);
+                    string addResult = this.databaseConnection.AddSongToTable(title, artist = null, album = null, playlist = null, length, genre = null, plays, extension, filePath);
                     if (!string.IsNullOrEmpty(addResult))
                     {
                         MessageBox.Show(addResult);
@@ -152,62 +176,81 @@ namespace MusicApplication
                     {
                         UpdateTable();
                     }
+
                     break;
                 default:
                     break;
             }
+
             openFileDialogLocal.Dispose();
         }
 
+        /// <summary>
+        /// Updates the view table on the form with the songs from the database table
+        /// </summary>
         private void UpdateTable()
         {
-            objectListView.ClearObjects();
-            ArrayList itemList = databaseConnection.GetSongsFromTable();
+            this.objectListView.ClearObjects();
+            ArrayList itemList = this.databaseConnection.GetSongsFromTable();
             foreach (LocalAudioItem audioItem in itemList)
             {
-                objectListView.AddObject(audioItem);
+                this.objectListView.AddObject(audioItem);
             }
         }
 
+        /// <summary>
+        /// Deletes the song table
+        /// </summary>
+        /// <param name="sender">The sender object</param>
+        /// <param name="e">The context of the button being pressed</param>
         private void Button1_Click(object sender, EventArgs e)
         {
-            databaseConnection.DropTable();
+            this.databaseConnection.DropTable();
         }
 
+        /// <summary>
+        /// Executes when a row in the table is double clicked
+        /// </summary>
+        /// <param name="sender">The sender object</param>
+        /// <param name="e">The context of the button being pressed</param>
         private void ObjectListView_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            WMPPlayState playst = winmp.playState;
+            WMPPlayState playst = this.winmp.playState;
 
-            if (!(winmp.playState == WMPPlayState.wmppsStopped || winmp.playState == WMPPlayState.wmppsUndefined))
+            if (!(this.winmp.playState == WMPPlayState.wmppsStopped || this.winmp.playState == WMPPlayState.wmppsUndefined))
             {
                 songTimer.Stop();
-                winmp.controls.stop();
+                this.winmp.controls.stop();
             }
 
             ListView.SelectedListViewItemCollection selectedRow = objectListView.SelectedItems;
 
-            foreach (OLVListItem rowObject in selectedRow) //will be able to play multiple now
+            foreach (OLVListItem rowObject in selectedRow)
             {
-                songTimer = new Timer();
+                this.songTimer = new Timer();
                 LocalAudioItem rowItem = (LocalAudioItem)rowObject.RowObject;
 
                 switch (rowItem.ReaderFileExtension)
                 {
                     case ".wmv":
-                        winmp.URL = rowItem.ReaderFilePath;
-                        musicArea1.Value = 0;
-                        musicArea1.MaxTime = (int)rowItem.ReaderLength;
-                        songTimer.Start();
-                        winmp.controls.play();
+                        this.winmp.URL = rowItem.ReaderFilePath;
+                        this.musicArea1.Value = 0;
+                        this.musicArea1.MaxTime = (int)rowItem.ReaderLength;
+                        this.songTimer.Start();
+                        this.winmp.controls.play();
                         break;
                 }
             }
-            
         }
 
+        /// <summary>
+        /// The tick of the songs timer
+        /// </summary>
+        /// <param name="sender">The sender object</param>
+        /// <param name="e">The context the timer ticks</param>
         private void SongTimer_Tick(object sender, EventArgs e)
         {
-           musicArea1.Value = musicArea1.Value + 1;
+           this.musicArea1.Value = this.musicArea1.Value + 1;
         }
     }
 }
