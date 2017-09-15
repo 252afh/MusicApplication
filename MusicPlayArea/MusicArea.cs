@@ -24,66 +24,6 @@ namespace MusicPlayArea
         private int songLength = 1;
 
         /// <summary>
-        /// Play button not hovered image
-        /// </summary>
-        private Image playImageNotHovered;
-
-        /// <summary>
-        /// Play button hovered image
-        /// </summary>
-        private Image playImageHovered;
-
-        /// <summary>
-        /// Pause button not hovered image
-        /// </summary>
-        private Image pauseImageNotHovered;
-
-        /// <summary>
-        /// Pause button hovered image
-        /// </summary>
-        private Image pauseImageHovered;
-
-        /// <summary>
-        /// Stop button not hovered image
-        /// </summary>
-        private Image stopImageNotHovered;
-
-        /// <summary>
-        /// Stop button hovered image
-        /// </summary>
-        private Image stopImageHovered;
-
-        /// <summary>
-        /// Shuffle button not hovered image
-        /// </summary>
-        private Image shuffleImageNotHovered;
-
-        /// <summary>
-        /// Shuffle button hovered image
-        /// </summary>
-        private Image shuffleImageHovered;
-
-        /// <summary>
-        /// Replay button not hovered image
-        /// </summary>
-        private Image replayImageNotHovered;
-
-        /// <summary>
-        /// Replay button hovered image
-        /// </summary>
-        private Image replayImageHovered;
-
-        /// <summary>
-        /// Play all button not hovered image
-        /// </summary>
-        private Image playAllImageNotHovered;
-
-        /// <summary>
-        /// Play all button hovered image
-        /// </summary>
-        private Image playAllImageHovered;
-
-        /// <summary>
         /// Initialises a new instance of the <see cref="MusicArea"/> class
         /// </summary>
         public MusicArea()
@@ -98,7 +38,7 @@ namespace MusicPlayArea
         {
             get
             {
-                return this.playImageNotHovered;
+                return this.PlayButton.NotHoverImage;
             }
 
             set
@@ -115,7 +55,7 @@ namespace MusicPlayArea
         {
             get
             {
-                return this.playImageHovered;
+                return this.PlayButton.OnHoverImage;
             }
 
             set
@@ -132,7 +72,7 @@ namespace MusicPlayArea
         {
             get
             {
-                return this.pauseImageNotHovered;
+                return this.PauseButton.NotHoverImage;
             }
 
             set
@@ -149,7 +89,7 @@ namespace MusicPlayArea
         {
             get
             {
-                return this.pauseImageNotHovered;
+                return this.PauseButton.OnHoverImage;
             }
 
             set
@@ -166,7 +106,7 @@ namespace MusicPlayArea
         {
             get
             {
-                return this.stopImageNotHovered;
+                return this.StopButton.NotHoverImage;
             }
 
             set
@@ -183,7 +123,7 @@ namespace MusicPlayArea
         {
             get
             {
-                return this.stopImageHovered;
+                return this.StopButton.OnHoverImage;
             }
 
             set
@@ -200,7 +140,7 @@ namespace MusicPlayArea
         {
             get
             {
-                return this.shuffleImageNotHovered;
+                return this.ShuffleButton.NotHoverImage;
             }
 
             set
@@ -217,7 +157,7 @@ namespace MusicPlayArea
         {
             get
             {
-                return this.shuffleImageHovered;
+                return this.ShuffleButton.OnHoverImage;
             }
 
             set
@@ -234,7 +174,7 @@ namespace MusicPlayArea
         {
             get
             {
-                return this.replayImageNotHovered;
+                return this.ReplayButton.NotHoverImage;
             }
 
             set
@@ -251,7 +191,7 @@ namespace MusicPlayArea
         {
             get
             {
-                return this.replayImageNotHovered;
+                return this.ReplayButton.OnHoverImage;
             }
 
             set
@@ -268,7 +208,7 @@ namespace MusicPlayArea
         {
             get
             {
-                return this.playAllImageNotHovered;
+                return this.PlayAllButton.NotHoverImage;
             }
 
             set
@@ -285,7 +225,7 @@ namespace MusicPlayArea
         {
             get
             {
-                return this.playAllImageHovered;
+                return this.PlayAllButton.OnHoverImage;
             }
 
             set

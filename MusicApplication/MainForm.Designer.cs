@@ -34,6 +34,7 @@ namespace MusicApplication
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.AddToLocalLibBtn = new System.Windows.Forms.Button();
             this.openFileDialogLocal = new System.Windows.Forms.OpenFileDialog();
             this.button1 = new System.Windows.Forms.Button();
@@ -254,23 +255,22 @@ namespace MusicApplication
             // 
             // musicArea1
             // 
-            this.musicArea1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.musicArea1.Location = new System.Drawing.Point(233, 57);
+            this.musicArea1.Location = new System.Drawing.Point(290, 82);
             this.musicArea1.MaxTime = 1;
             this.musicArea1.Name = "musicArea1";
-            this.musicArea1.PauseImageHovered = global::MusicApplication.Properties.Resources.Pause_Red;
-            this.musicArea1.PauseImageNotHovered = global::MusicApplication.Properties.Resources.Pause_Grey;
-            this.musicArea1.PlayAllImageHovered = global::MusicApplication.Properties.Resources.Replay_Red;
-            this.musicArea1.PlayAllImageNotHovered = global::MusicApplication.Properties.Resources.Replay_Grey;
-            this.musicArea1.PlayImageHovered = global::MusicApplication.Properties.Resources.Play_Red;
-            this.musicArea1.PlayImageNotHovered = global::MusicApplication.Properties.Resources.Play_Grey;
-            this.musicArea1.ReplayImageHovered = global::MusicApplication.Properties.Resources.Replay_Red;
-            this.musicArea1.ReplayImageNotHovered = global::MusicApplication.Properties.Resources.Replay_Grey;
-            this.musicArea1.ShuffleImageHovered = global::MusicApplication.Properties.Resources.Shuffle_Red;
-            this.musicArea1.ShuffleImageNotHovered = global::MusicApplication.Properties.Resources.Shuffle_Grey;
-            this.musicArea1.Size = new System.Drawing.Size(495, 84);
-            this.musicArea1.StopImageHovered = global::MusicApplication.Properties.Resources.Stop_Red;
-            this.musicArea1.StopImageNotHovered = global::MusicApplication.Properties.Resources.Stop_Grey;
+            this.musicArea1.PauseImageHovered = null;
+            this.musicArea1.PauseImageNotHovered = null;
+            this.musicArea1.PlayAllImageHovered = null;
+            this.musicArea1.PlayAllImageNotHovered = null;
+            this.musicArea1.PlayImageHovered = ((System.Drawing.Image)(resources.GetObject("musicArea1.PlayImageHovered")));
+            this.musicArea1.PlayImageNotHovered = ((System.Drawing.Image)(resources.GetObject("musicArea1.PlayImageNotHovered")));
+            this.musicArea1.ReplayImageHovered = null;
+            this.musicArea1.ReplayImageNotHovered = null;
+            this.musicArea1.ShuffleImageHovered = null;
+            this.musicArea1.ShuffleImageNotHovered = null;
+            this.musicArea1.Size = new System.Drawing.Size(425, 40);
+            this.musicArea1.StopImageHovered = null;
+            this.musicArea1.StopImageNotHovered = null;
             this.musicArea1.TabIndex = 11;
             this.musicArea1.Value = 0;
             // 

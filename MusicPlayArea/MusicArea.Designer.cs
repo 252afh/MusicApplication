@@ -30,12 +30,12 @@ namespace MusicPlayArea
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.progressBarCustom1 = new CustomBar.ProgressBarCustom();
-            this.PlayButton = new MusicPlayerButton.MusicButton();
             this.PauseButton = new MusicPlayerButton.MusicButton();
             this.StopButton = new MusicPlayerButton.MusicButton();
             this.ShuffleButton = new MusicPlayerButton.MusicButton();
             this.ReplayButton = new MusicPlayerButton.MusicButton();
             this.PlayAllButton = new MusicPlayerButton.MusicButton();
+            this.PlayButton = new MusicPlayerButton.MusicButton();
             this.SuspendLayout();
             // 
             // label1
@@ -44,7 +44,7 @@ namespace MusicPlayArea
             this.label1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label1.Font = new System.Drawing.Font("Comic Sans MS", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Red;
-            this.label1.Location = new System.Drawing.Point(234, 25);
+            this.label1.Location = new System.Drawing.Point(193, 3);
             this.label1.MaximumSize = new System.Drawing.Size(50, 50);
             this.label1.MinimumSize = new System.Drawing.Size(40, 20);
             this.label1.Name = "label1";
@@ -57,10 +57,9 @@ namespace MusicPlayArea
             // 
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label2.Font = new System.Drawing.Font("Comic Sans MS", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Red;
-            this.label2.Location = new System.Drawing.Point(423, 25);
+            this.label2.Location = new System.Drawing.Point(382, 3);
             this.label2.MaximumSize = new System.Drawing.Size(50, 50);
             this.label2.MinimumSize = new System.Drawing.Size(40, 20);
             this.label2.Name = "label2";
@@ -75,7 +74,7 @@ namespace MusicPlayArea
             this.label3.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label3.Font = new System.Drawing.Font("Comic Sans MS", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Red;
-            this.label3.Location = new System.Drawing.Point(44, 25);
+            this.label3.Location = new System.Drawing.Point(3, 3);
             this.label3.MaximumSize = new System.Drawing.Size(50, 50);
             this.label3.MinimumSize = new System.Drawing.Size(40, 20);
             this.label3.Name = "label3";
@@ -89,28 +88,17 @@ namespace MusicPlayArea
             this.progressBarCustom1.BackColor = System.Drawing.SystemColors.Window;
             this.progressBarCustom1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.progressBarCustom1.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.progressBarCustom1.Location = new System.Drawing.Point(44, 45);
+            this.progressBarCustom1.Location = new System.Drawing.Point(3, 23);
             this.progressBarCustom1.MaxTime = 150;
             this.progressBarCustom1.Name = "progressBarCustom1";
             this.progressBarCustom1.Size = new System.Drawing.Size(419, 14);
             this.progressBarCustom1.TabIndex = 0;
             this.progressBarCustom1.Value = 150;
             // 
-            // PlayButton
-            // 
-            this.PlayButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.PlayButton.Location = new System.Drawing.Point(84, 25);
-            this.PlayButton.Margin = new System.Windows.Forms.Padding(0);
-            this.PlayButton.Name = "PlayButton";
-            this.PlayButton.NotHoverImage = global::MusicPlayArea.Properties.Resources.Play_Grey;
-            this.PlayButton.OnHoverImage = global::MusicPlayArea.Properties.Resources.Play_Red;
-            this.PlayButton.Size = new System.Drawing.Size(50, 20);
-            this.PlayButton.TabIndex = 4;
-            // 
             // PauseButton
             // 
             this.PauseButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.PauseButton.Location = new System.Drawing.Point(134, 25);
+            this.PauseButton.Location = new System.Drawing.Point(93, 3);
             this.PauseButton.Margin = new System.Windows.Forms.Padding(0);
             this.PauseButton.Name = "PauseButton";
             this.PauseButton.NotHoverImage = null;
@@ -121,7 +109,7 @@ namespace MusicPlayArea
             // StopButton
             // 
             this.StopButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.StopButton.Location = new System.Drawing.Point(184, 25);
+            this.StopButton.Location = new System.Drawing.Point(143, 3);
             this.StopButton.Name = "StopButton";
             this.StopButton.NotHoverImage = null;
             this.StopButton.OnHoverImage = null;
@@ -131,7 +119,7 @@ namespace MusicPlayArea
             // ShuffleButton
             // 
             this.ShuffleButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ShuffleButton.Location = new System.Drawing.Point(274, 25);
+            this.ShuffleButton.Location = new System.Drawing.Point(233, 3);
             this.ShuffleButton.Name = "ShuffleButton";
             this.ShuffleButton.NotHoverImage = null;
             this.ShuffleButton.OnHoverImage = null;
@@ -141,7 +129,7 @@ namespace MusicPlayArea
             // ReplayButton
             // 
             this.ReplayButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ReplayButton.Location = new System.Drawing.Point(324, 25);
+            this.ReplayButton.Location = new System.Drawing.Point(283, 3);
             this.ReplayButton.Name = "ReplayButton";
             this.ReplayButton.NotHoverImage = null;
             this.ReplayButton.OnHoverImage = null;
@@ -151,18 +139,26 @@ namespace MusicPlayArea
             // PlayAllButton
             // 
             this.PlayAllButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.PlayAllButton.Location = new System.Drawing.Point(374, 25);
+            this.PlayAllButton.Location = new System.Drawing.Point(333, 3);
             this.PlayAllButton.Name = "PlayAllButton";
             this.PlayAllButton.NotHoverImage = null;
             this.PlayAllButton.OnHoverImage = null;
             this.PlayAllButton.Size = new System.Drawing.Size(50, 20);
             this.PlayAllButton.TabIndex = 9;
             // 
+            // PlayButton
+            // 
+            this.PlayButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.PlayButton.Location = new System.Drawing.Point(43, 3);
+            this.PlayButton.Margin = new System.Windows.Forms.Padding(0);
+            this.PlayButton.Name = "PlayButton";
+            this.PlayButton.Size = new System.Drawing.Size(50, 20);
+            this.PlayButton.TabIndex = 4;
+            // 
             // MusicArea
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Controls.Add(this.PlayAllButton);
             this.Controls.Add(this.ReplayButton);
             this.Controls.Add(this.ShuffleButton);
@@ -175,7 +171,7 @@ namespace MusicPlayArea
             this.Controls.Add(this.progressBarCustom1);
             this.DoubleBuffered = true;
             this.Name = "MusicArea";
-            this.Size = new System.Drawing.Size(495, 84);
+            this.Size = new System.Drawing.Size(425, 40);
             this.SizeChanged += new System.EventHandler(this.MusicArea_SizeChanged);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -188,11 +184,11 @@ namespace MusicPlayArea
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private MusicPlayerButton.MusicButton PlayButton;
         private MusicPlayerButton.MusicButton PauseButton;
         private MusicPlayerButton.MusicButton StopButton;
         private MusicPlayerButton.MusicButton ShuffleButton;
         private MusicPlayerButton.MusicButton ReplayButton;
         private MusicPlayerButton.MusicButton PlayAllButton;
+        private MusicPlayerButton.MusicButton PlayButton;
     }
 }
