@@ -120,10 +120,10 @@ namespace MusicApplication
         {
             Button[] buttonList = new Button[]
             {
-                HomePageButton,
-                LocalButton,
-                APIButton,
-                OptionButton
+                this.HomePageButton,
+                this.LocalButton,
+                this.APIButton,
+                this.OptionButton
             };
             foreach (Button selectedButton in buttonList)
             {

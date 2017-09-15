@@ -317,12 +317,12 @@ namespace MusicPlayArea
                 }
 
                 this.currentTime = value;
-                progressBarCustom1.Value = this.currentTime;
+                this.progressBarCustom1.Value = this.currentTime;
 
                 int currentMinutes = (int)Math.Floor(this.currentTime / 60.0);
                 int currentSeconds = (int)(this.currentTime % 60);
                 string labelText = currentMinutes.ToString() + "." + currentSeconds.ToString();
-                label1.Text = labelText;
+                this.label1.Text = labelText;
                 this.Invalidate();
             }
         }
@@ -352,8 +352,8 @@ namespace MusicPlayArea
 
                 int songSeconds = (int)(this.songLength % 60);
                 string maximumText = songMinutes.ToString() + "." + songSeconds.ToString();
-                label2.Text = maximumText;
-                progressBarCustom1.MaxTime = this.songLength;
+                this.label2.Text = maximumText;
+                this.progressBarCustom1.MaxTime = this.songLength;
                 this.Invalidate();
             }
         }
