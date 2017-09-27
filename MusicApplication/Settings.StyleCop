@@ -2,6 +2,7 @@
   <GlobalSettings>
     <StringProperty Name="Culture">en-GB</StringProperty>
     <CollectionProperty Name="RecognizedWords">
+      <Value>musicarea</Value>
       <Value>SQLite</Value>
     </CollectionProperty>
   </GlobalSettings>

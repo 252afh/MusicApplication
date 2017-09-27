@@ -11,12 +11,19 @@ namespace MusicApplication
     using BrightIdeasSoftware;
     using MusicApplication.Enums;
     using WMPLib;
+    using System.Diagnostics;
 
     /// <summary>
     /// The main class for the music player UI
     /// </summary>
     public partial class MainForm : Form
     {
+
+        /// <summary>
+        /// Boolean to decide whether the music is paused or not
+        /// </summary>
+        private bool IsPaused { get; set; }
+
         /// <summary>
         /// The database connection
         /// </summary>
@@ -215,9 +222,25 @@ namespace MusicApplication
         /// <param name="e">The context of the button being pressed</param>
         private void ObjectListView_MouseDoubleClick(object sender, MouseEventArgs e)
         {
+            this.PlaySong();
+        }
+
+        /// <summary>
+        /// Override to assign a time to PlaySong as default 0
+        /// </summary>
+        private void PlaySong()
+        {
+            PlaySong(0.0);
+        }
+
+        /// <summary>
+        /// Plays a song
+        /// </summary>
+        private void PlaySong(double startTime)
+        {
             WMPPlayState playst = this.winmp.playState;
 
-            if (!(this.winmp.playState == WMPPlayState.wmppsStopped || this.winmp.playState == WMPPlayState.wmppsUndefined))
+            if (!(playst == WMPPlayState.wmppsStopped || playst == WMPPlayState.wmppsUndefined))
             {
                 songTimer.Stop();
                 this.winmp.controls.stop();
@@ -227,20 +250,51 @@ namespace MusicApplication
 
             foreach (OLVListItem rowObject in selectedRow)
             {
-                this.songTimer = new Timer();
+                this.songTimer = new Stopwatch();
                 LocalAudioItem rowItem = (LocalAudioItem)rowObject.RowObject;
 
                 switch (rowItem.ReaderFileExtension)
                 {
                     case ".wmv":
                         this.winmp.URL = rowItem.ReaderFilePath;
-                        this.musicArea1.Value = 0;
-                        this.musicArea1.MaxTime = (int)rowItem.ReaderLength;
+                        this.musicArea2.Value = 0;
+                        this.musicArea2.MaxTime = (int)rowItem.ReaderLength;
                         this.songTimer.Start();
+                        this.winmp.controls.currentPosition = startTime;
                         this.winmp.controls.play();
                         break;
                 }
             }
+        }
+
+        /// <summary>
+        /// Stops the current song from playing
+        /// </summary>
+        private void StopMusic()
+        {
+            WMPPlayState playst = this.winmp.playState;
+
+            if (!(playst == WMPPlayState.wmppsStopped || playst == WMPPlayState.wmppsUndefined))
+            {
+                songTimer.Stop();
+                this.winmp.controls.stop();
+                musicArea2.MaxTime = 0;
+                musicArea2.Value = 0;
+            }
+        }
+        
+        /// <summary>
+        /// Pauses the current song
+        /// </summary>
+        private void PauseMusic()
+        {
+            if (IsPaused != true)
+            {
+                int timerValue = songTimer.;
+                winmp.controls.pause();
+                IsPaused = true;
+            }
+
         }
 
         /// <summary>
@@ -250,7 +304,83 @@ namespace MusicApplication
         /// <param name="e">The context the timer ticks</param>
         private void SongTimer_Tick(object sender, EventArgs e)
         {
-           this.musicArea1.Value = this.musicArea1.Value + 1;
+            this.musicArea2.Value = this.musicArea2.Value + 1;
+        }
+
+        /// <summary>
+        /// Add button control events for the <see cref="musicArea2"/>
+        /// </summary>
+        private void AddMusicButtonClickHandlers()
+        {
+            Control[] buttons = new Control[6];
+            int arraylocation = 0;
+            foreach (Control c in musicArea2.Controls)
+            {
+                if (c.Name.Contains("Button"))
+                {
+                    buttons.SetValue(c, arraylocation);
+                    arraylocation++;
+                }
+            }
+
+            buttons[0].MouseClick += new MouseEventHandler(this.PlayButton_Click);
+        }
+
+        /// <summary>
+        /// Executes when the play button is pressed in the <see cref="musicArea2"/>
+        /// </summary>
+        /// <param name="sender">The sender object</param>
+        /// <param name="e">The sender context</param>
+        private void PlayButton_Click(object sender, MouseEventArgs e)
+        {
+            this.PlaySong();
+        }
+
+        /// <summary>
+        /// Executes when the pause button is pressed in the <see cref="musicArea2"/>
+        /// </summary>
+        /// <param name="sender">The sender object</param>
+        /// <param name="e">The sender context</param>
+        private void PauseButton_Click(object sender, MouseEventArgs e)
+        {
+            PauseMusic();
+        }
+
+        /// <summary>
+        /// Executes when the stop button is pressed in the <see cref="musicArea2"/>
+        /// </summary>
+        /// <param name="sender">The sender object</param>
+        /// <param name="e">The sender context</param>
+        private void StopButton_Click(object sender, MouseEventArgs e)
+        {
+            StopMusic();
+        }
+
+        /// <summary>
+        /// Executes when the replay button is pressed in the <see cref="musicArea2"/>
+        /// </summary>
+        /// <param name="sender">The sender object</param>
+        /// <param name="e">The sender context</param>
+        private void ReplayButton_Click(object sender, MouseEventArgs e)
+        {
+        }
+
+        /// <summary>
+        /// Executes when the shuffle button is pressed in the <see cref="musicArea2"/>
+        /// </summary>
+        /// <param name="sender">The sender object</param>
+        /// <param name="e">The sender context</param>
+        private void ShuffleButton_Click(object sender, MouseEventArgs e)
+        {
+        }
+
+        /// <summary>
+        /// Executes when the rewind button is pressed in the <see cref="musicArea2"/>
+        /// </summary>
+        /// <param name="sender">The sender object</param>
+        /// <param name="e">The sender context</param>
+        private void RewindButton_Click(object sender, MouseEventArgs e)
+        {
         }
     }
 }
