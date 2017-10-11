@@ -26,9 +26,9 @@ namespace MusicPlayArea
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.currentTimeLabel = new System.Windows.Forms.Label();
+            this.maximumTimeLabel = new System.Windows.Forms.Label();
+            this.minimumTimeLabel = new System.Windows.Forms.Label();
             this.progressBarCustom1 = new CustomBar.ProgressBarCustom();
             this.PauseButton = new MusicPlayerButton.MusicButton();
             this.StopButton = new MusicPlayerButton.MusicButton();
@@ -38,50 +38,50 @@ namespace MusicPlayArea
             this.PlayButton = new MusicPlayerButton.MusicButton();
             this.SuspendLayout();
             // 
-            // label1
+            // currentTimeLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label1.Font = new System.Drawing.Font("Comic Sans MS", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.Red;
-            this.label1.Location = new System.Drawing.Point(193, 3);
-            this.label1.MaximumSize = new System.Drawing.Size(50, 50);
-            this.label1.MinimumSize = new System.Drawing.Size(40, 20);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(40, 20);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "0.00";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.currentTimeLabel.AutoSize = true;
+            this.currentTimeLabel.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.currentTimeLabel.Font = new System.Drawing.Font("Comic Sans MS", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.currentTimeLabel.ForeColor = System.Drawing.Color.Red;
+            this.currentTimeLabel.Location = new System.Drawing.Point(193, 3);
+            this.currentTimeLabel.MaximumSize = new System.Drawing.Size(50, 50);
+            this.currentTimeLabel.MinimumSize = new System.Drawing.Size(40, 20);
+            this.currentTimeLabel.Name = "currentTimeLabel";
+            this.currentTimeLabel.Size = new System.Drawing.Size(40, 20);
+            this.currentTimeLabel.TabIndex = 1;
+            this.currentTimeLabel.Text = "0.00";
+            this.currentTimeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label2
+            // maximumTimeLabel
             // 
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label2.Font = new System.Drawing.Font("Comic Sans MS", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.Red;
-            this.label2.Location = new System.Drawing.Point(382, 3);
-            this.label2.MaximumSize = new System.Drawing.Size(50, 50);
-            this.label2.MinimumSize = new System.Drawing.Size(40, 20);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(40, 20);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "0.00";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.maximumTimeLabel.AutoSize = true;
+            this.maximumTimeLabel.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.maximumTimeLabel.Font = new System.Drawing.Font("Comic Sans MS", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.maximumTimeLabel.ForeColor = System.Drawing.Color.Red;
+            this.maximumTimeLabel.Location = new System.Drawing.Point(382, 3);
+            this.maximumTimeLabel.MaximumSize = new System.Drawing.Size(50, 50);
+            this.maximumTimeLabel.MinimumSize = new System.Drawing.Size(40, 20);
+            this.maximumTimeLabel.Name = "maximumTimeLabel";
+            this.maximumTimeLabel.Size = new System.Drawing.Size(40, 20);
+            this.maximumTimeLabel.TabIndex = 2;
+            this.maximumTimeLabel.Text = "0.00";
+            this.maximumTimeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label3
+            // minimumTimeLabel
             // 
-            this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label3.Font = new System.Drawing.Font("Comic Sans MS", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.Red;
-            this.label3.Location = new System.Drawing.Point(3, 3);
-            this.label3.MaximumSize = new System.Drawing.Size(50, 50);
-            this.label3.MinimumSize = new System.Drawing.Size(40, 20);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(40, 20);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "0.00";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.minimumTimeLabel.AutoSize = true;
+            this.minimumTimeLabel.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.minimumTimeLabel.Font = new System.Drawing.Font("Comic Sans MS", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.minimumTimeLabel.ForeColor = System.Drawing.Color.Red;
+            this.minimumTimeLabel.Location = new System.Drawing.Point(3, 3);
+            this.minimumTimeLabel.MaximumSize = new System.Drawing.Size(50, 50);
+            this.minimumTimeLabel.MinimumSize = new System.Drawing.Size(40, 20);
+            this.minimumTimeLabel.Name = "minimumTimeLabel";
+            this.minimumTimeLabel.Size = new System.Drawing.Size(40, 20);
+            this.minimumTimeLabel.TabIndex = 3;
+            this.minimumTimeLabel.Text = "0.00";
+            this.minimumTimeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // progressBarCustom1
             // 
@@ -152,6 +152,8 @@ namespace MusicPlayArea
             this.PlayButton.Location = new System.Drawing.Point(43, 3);
             this.PlayButton.Margin = new System.Windows.Forms.Padding(0);
             this.PlayButton.Name = "PlayButton";
+            this.PlayButton.NotHoverImage = null;
+            this.PlayButton.OnHoverImage = null;
             this.PlayButton.Size = new System.Drawing.Size(50, 20);
             this.PlayButton.TabIndex = 4;
             // 
@@ -165,9 +167,9 @@ namespace MusicPlayArea
             this.Controls.Add(this.StopButton);
             this.Controls.Add(this.PauseButton);
             this.Controls.Add(this.PlayButton);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.minimumTimeLabel);
+            this.Controls.Add(this.maximumTimeLabel);
+            this.Controls.Add(this.currentTimeLabel);
             this.Controls.Add(this.progressBarCustom1);
             this.DoubleBuffered = true;
             this.Name = "MusicArea";
@@ -181,9 +183,9 @@ namespace MusicPlayArea
         #endregion
 
         private CustomBar.ProgressBarCustom progressBarCustom1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label currentTimeLabel;
+        private System.Windows.Forms.Label maximumTimeLabel;
+        private System.Windows.Forms.Label minimumTimeLabel;
         private MusicPlayerButton.MusicButton PauseButton;
         private MusicPlayerButton.MusicButton StopButton;
         private MusicPlayerButton.MusicButton ShuffleButton;

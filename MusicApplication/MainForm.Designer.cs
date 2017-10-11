@@ -35,7 +35,6 @@ namespace MusicApplication
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.AddToLocalLibBtn = new System.Windows.Forms.Button();
             this.openFileDialogLocal = new System.Windows.Forms.OpenFileDialog();
             this.button1 = new System.Windows.Forms.Button();
@@ -56,7 +55,6 @@ namespace MusicApplication
             this.APIButton = new System.Windows.Forms.Button();
             this.LocalButton = new System.Windows.Forms.Button();
             this.HomePageButton = new System.Windows.Forms.Button();
-            this.songTimer = new Stopwatch();
             this.musicArea2 = new MusicPlayArea.MusicArea();
             ((System.ComponentModel.ISupportInitialize)(this.objectListView)).BeginInit();
             this.SuspendLayout();
@@ -130,22 +128,22 @@ namespace MusicApplication
             // 
             // TitleObject
             // 
-            this.TitleObject.AspectName = "readerTitle";
+            this.TitleObject.AspectName = "ReaderTitle";
             this.TitleObject.Text = "Title";
             // 
             // ArtistObject
             // 
-            this.ArtistObject.AspectName = "readerArtist";
+            this.ArtistObject.AspectName = "ReaderArtist";
             this.ArtistObject.Text = "Artist";
             // 
             // AlbumObject
             // 
-            this.AlbumObject.AspectName = "readerAlbum";
+            this.AlbumObject.AspectName = "ReaderAlbum";
             this.AlbumObject.Text = "Album";
             // 
             // GenreObject
             // 
-            this.GenreObject.AspectName = "readerGenre";
+            this.GenreObject.AspectName = "ReaderGenre";
             this.GenreObject.Text = "Genre";
             // 
             // DateObject
@@ -155,22 +153,22 @@ namespace MusicApplication
             // 
             // LengthObject
             // 
-            this.LengthObject.AspectName = "readerLength";
+            this.LengthObject.AspectName = "ReaderLength";
             this.LengthObject.Text = "Length";
             // 
             // PlaysObject
             // 
-            this.PlaysObject.AspectName = "readerPlays";
+            this.PlaysObject.AspectName = "ReaderPlays";
             this.PlaysObject.Text = "Plays";
             // 
             // PlaylistObject
             // 
-            this.PlaylistObject.AspectName = "readerPlaylist";
+            this.PlaylistObject.AspectName = "ReaderPlaylist";
             this.PlaylistObject.Text = "Playlist";
             // 
             // ExtensionObject
             // 
-            this.ExtensionObject.AspectName = "readerFileExtension";
+            this.ExtensionObject.AspectName = "ReaderFileExtension";
             this.ExtensionObject.DisplayIndex = 9;
             this.ExtensionObject.IsVisible = false;
             this.ExtensionObject.Text = "Extension";
@@ -178,7 +176,7 @@ namespace MusicApplication
             // 
             // FilePathObject
             // 
-            this.FilePathObject.AspectName = "readerFilePath";
+            this.FilePathObject.AspectName = "ReaderFilePath";
             this.FilePathObject.DisplayIndex = 10;
             this.FilePathObject.IsVisible = false;
             this.FilePathObject.Text = "FilePath";
@@ -186,7 +184,7 @@ namespace MusicApplication
             // 
             // KeyObject
             // 
-            this.KeyObject.AspectName = "readerId";
+            this.KeyObject.AspectName = "ReaderId";
             this.KeyObject.DisplayIndex = 9;
             this.KeyObject.IsVisible = false;
             this.KeyObject.Text = "key";
@@ -247,9 +245,6 @@ namespace MusicApplication
             this.HomePageButton.MouseEnter += new System.EventHandler(this.MouseEnter);
             this.HomePageButton.MouseLeave += new System.EventHandler(this.MouseExit);
             this.HomePageButton.MouseUp += new System.Windows.Forms.MouseEventHandler(this.MouseUnClicked);
-            // 
-            // songTimer
-            // 
             // 
             // musicArea2
             // 

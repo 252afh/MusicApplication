@@ -11,7 +11,6 @@ namespace MusicApplication
     using BrightIdeasSoftware;
     using MusicApplication.Enums;
     using WMPLib;
-    using System.Diagnostics;
 
     /// <summary>
     /// The main class for the music player UI
@@ -23,6 +22,8 @@ namespace MusicApplication
         /// Boolean to decide whether the music is paused or not
         /// </summary>
         private bool IsPaused { get; set; }
+
+        private Timer Timer { get; set; }
 
         /// <summary>
         /// The database connection
@@ -42,7 +43,14 @@ namespace MusicApplication
             this.InitializeComponent();
             this.winmp = new WindowsMediaPlayer();
             this.databaseConnection = new DatabaseConn();
+            this.Timer = new Timer();
+            this.Timer.Tick += Timer_Tick;
             this.UpdateTable();
+        }
+
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            this.musicArea2.Value = (int)winmp.controls.currentPosition;
         }
 
         /// <summary>
@@ -242,7 +250,6 @@ namespace MusicApplication
 
             if (!(playst == WMPPlayState.wmppsStopped || playst == WMPPlayState.wmppsUndefined))
             {
-                songTimer.Stop();
                 this.winmp.controls.stop();
             }
 
@@ -250,7 +257,6 @@ namespace MusicApplication
 
             foreach (OLVListItem rowObject in selectedRow)
             {
-                this.songTimer = new Stopwatch();
                 LocalAudioItem rowItem = (LocalAudioItem)rowObject.RowObject;
 
                 switch (rowItem.ReaderFileExtension)
@@ -259,11 +265,19 @@ namespace MusicApplication
                         this.winmp.URL = rowItem.ReaderFilePath;
                         this.musicArea2.Value = 0;
                         this.musicArea2.MaxTime = (int)rowItem.ReaderLength;
-                        this.songTimer.Start();
                         this.winmp.controls.currentPosition = startTime;
                         this.winmp.controls.play();
+                        this.Timer.Start();
                         break;
                 }
+            }
+        }
+
+        private void Winmp_MarkerHit(int MarkerNum)
+        {
+            if (MarkerNum > 0)
+            {
+                this.musicArea2.Value = 1;
             }
         }
 
@@ -276,7 +290,6 @@ namespace MusicApplication
 
             if (!(playst == WMPPlayState.wmppsStopped || playst == WMPPlayState.wmppsUndefined))
             {
-                songTimer.Stop();
                 this.winmp.controls.stop();
                 musicArea2.MaxTime = 0;
                 musicArea2.Value = 0;
@@ -288,23 +301,10 @@ namespace MusicApplication
         /// </summary>
         private void PauseMusic()
         {
-            if (IsPaused != true)
-            {
-                int timerValue = songTimer.;
-                winmp.controls.pause();
-                IsPaused = true;
-            }
+            
+            winmp.controls.pause();
+            
 
-        }
-
-        /// <summary>
-        /// The tick of the songs timer
-        /// </summary>
-        /// <param name="sender">The sender object</param>
-        /// <param name="e">The context the timer ticks</param>
-        private void SongTimer_Tick(object sender, EventArgs e)
-        {
-            this.musicArea2.Value = this.musicArea2.Value + 1;
         }
 
         /// <summary>
