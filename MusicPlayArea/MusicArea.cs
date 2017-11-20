@@ -262,7 +262,7 @@ namespace MusicPlayArea
                 int currentMinutes = (int)Math.Floor(this.currentTime / 60.0);
                 int currentSeconds = (int)(this.currentTime % 60);
                 string labelText;
-                if(currentSeconds > 10)
+                if (currentSeconds > 10)
                 {
                     labelText = currentMinutes.ToString() + "." + currentSeconds.ToString();
                 }
@@ -270,6 +270,7 @@ namespace MusicPlayArea
                 {
                     labelText = currentMinutes.ToString() + ".0" + currentSeconds.ToString();
                 }
+
                 this.currentTimeLabel.Text = labelText;
                 this.Invalidate();
             }
@@ -308,6 +309,7 @@ namespace MusicPlayArea
                 {
                     maximumText = songMinutes.ToString() + ".0" + songSeconds.ToString();
                 }
+
                 this.maximumTimeLabel.Text = maximumText;
                 this.progressBarCustom1.MaxTime = this.songLength;
                 this.Invalidate();

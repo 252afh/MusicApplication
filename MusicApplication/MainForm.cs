@@ -17,14 +17,6 @@ namespace MusicApplication
     /// </summary>
     public partial class MainForm : Form
     {
-
-        /// <summary>
-        /// Boolean to decide whether the music is paused or not
-        /// </summary>
-        private bool IsPaused { get; set; }
-
-        private Timer Timer { get; set; }
-
         /// <summary>
         /// The database connection
         /// </summary>
@@ -44,13 +36,87 @@ namespace MusicApplication
             this.winmp = new WindowsMediaPlayer();
             this.databaseConnection = new DatabaseConn();
             this.Timer = new Timer();
-            this.Timer.Tick += Timer_Tick;
+            this.Timer.Tick += this.Timer_Tick;
             this.UpdateTable();
+            this.AssignClickMethods();
+            this.winmp.PlayStateChange += Winmp_PlayStateChange;
         }
 
+        /// <summary>
+        /// Gets or sets a value indicating whether the music is paused or not
+        /// </summary>
+        private bool IsPaused { get; set; }
+
+        /// <summary>
+        /// Gets or sets the timer to keep track of the music play time
+        /// </summary>
+        private Timer Timer { get; set; }
+
+        /// <summary>
+        /// Gets or sets the status of the shuffle button
+        /// </summary>
+        private bool IsShuffle { get; set; }
+
+        /// <summary>
+        /// Gets or sets the index of the next song to play
+        /// </summary>
+        private int NextSongIndex { get; set; }
+
+        /// <summary>
+        /// Goes to a random next song when one finishes
+        /// </summary>
+        /// <param name="Result"></param>
+        private void Winmp_PlayStateChange(int Result)
+        {
+            if (IsShuffle && winmp.playlistCollection == null)
+            {
+                if (this.winmp.playState == WMPPlayState.wmppsMediaEnded)
+                {
+                    Random Randomizer = new Random();
+                    int RandomSong = Randomizer.Next(0, objectListView.GetItemCount());
+                    LocalAudioItem rowItem = (LocalAudioItem)objectListView.GetItem(RandomSong).RowObject;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Assigns the correct action methods to button clicks
+        /// </summary>
+        private void AssignClickMethods()
+        {
+            Control[] AreaButtons = new Control[6];
+
+            AreaButtons[0] = this.musicArea2.Controls.Find("PauseButton", false)[0];
+            AreaButtons[1] = this.musicArea2.Controls.Find("PlayButton", false)[0];
+            AreaButtons[2] = this.musicArea2.Controls.Find("StopButton", false)[0];
+            AreaButtons[3] = this.musicArea2.Controls.Find("PlayAllButton", false)[0];
+            AreaButtons[4] = this.musicArea2.Controls.Find("ShuffleButton", false)[0];
+            AreaButtons[5] = this.musicArea2.Controls.Find("ReplayButton", false)[0];
+
+            foreach (Control btn in AreaButtons)
+            {
+                if (btn == null)
+                {
+                    throw new ArgumentNullException("Button " + btn + " does not exist to assign the click action to.");
+                }
+            }
+
+            AreaButtons[0].Click += PauseButton_Click;
+            AreaButtons[1].Click += PlayButton_Click;
+            AreaButtons[2].Click += StopButton_Click;
+            AreaButtons[3].Click += ReplayButton_Click;
+            AreaButtons[4].Click += ShuffleButton_Click;
+            AreaButtons[5].Click += RewindButton_Click;
+        }
+
+        /// <summary>
+        /// Tick of the timer to set the current time the song is at
+        /// </summary>
+        /// <param name="sender">The sender object</param>
+        /// <param name="e">The sender context</param>
         private void Timer_Tick(object sender, EventArgs e)
         {
-            this.musicArea2.Value = (int)winmp.controls.currentPosition;
+            this.musicArea2.Value = (int)this.winmp.controls.currentPosition;
         }
 
         /// <summary>
@@ -238,23 +304,24 @@ namespace MusicApplication
         /// </summary>
         private void PlaySong()
         {
-            PlaySong(0.0);
+            this.PlaySongDoubleClick(0.0);
         }
 
         /// <summary>
         /// Plays a song
         /// </summary>
-        private void PlaySong(double startTime)
+        /// <param name="startTime">The time to start the song at</param>
+        private void PlaySongDoubleClick(double startTime)
         {
             WMPPlayState playst = this.winmp.playState;
 
             if (!(playst == WMPPlayState.wmppsStopped || playst == WMPPlayState.wmppsUndefined))
             {
-                this.winmp.controls.stop();
+                this.StopMusic();
             }
 
             ListView.SelectedListViewItemCollection selectedRow = objectListView.SelectedItems;
-
+            
             foreach (OLVListItem rowObject in selectedRow)
             {
                 LocalAudioItem rowItem = (LocalAudioItem)rowObject.RowObject;
@@ -262,25 +329,22 @@ namespace MusicApplication
                 switch (rowItem.ReaderFileExtension)
                 {
                     case ".wmv":
-                        this.winmp.URL = rowItem.ReaderFilePath;
-                        this.musicArea2.Value = 0;
-                        this.musicArea2.MaxTime = (int)rowItem.ReaderLength;
-                        this.winmp.controls.currentPosition = startTime;
-                        this.winmp.controls.play();
-                        this.Timer.Start();
+                        PlaySong(startTime, rowItem);
                         break;
                 }
             }
         }
 
-        private void Winmp_MarkerHit(int MarkerNum)
+        private void PlaySong(double startTime, LocalAudioItem rowItem)
         {
-            if (MarkerNum > 0)
-            {
-                this.musicArea2.Value = 1;
-            }
+            this.winmp.URL = rowItem.ReaderFilePath;
+            this.musicArea2.Value = 0;
+            this.musicArea2.MaxTime = (int)rowItem.ReaderLength;
+            this.winmp.controls.currentPosition = startTime;
+            this.winmp.controls.play();
+            this.Timer.Start();
         }
-
+        
         /// <summary>
         /// Stops the current song from playing
         /// </summary>
@@ -291,8 +355,9 @@ namespace MusicApplication
             if (!(playst == WMPPlayState.wmppsStopped || playst == WMPPlayState.wmppsUndefined))
             {
                 this.winmp.controls.stop();
-                musicArea2.MaxTime = 0;
-                musicArea2.Value = 0;
+                this.Timer.Stop();
+                this.musicArea2.MaxTime = 0;
+                this.musicArea2.Value = 0;
             }
         }
         
@@ -301,29 +366,12 @@ namespace MusicApplication
         /// </summary>
         private void PauseMusic()
         {
-            
-            winmp.controls.pause();
-            
-
+            this.winmp.controls.pause();
         }
 
-        /// <summary>
-        /// Add button control events for the <see cref="musicArea2"/>
-        /// </summary>
-        private void AddMusicButtonClickHandlers()
+        private void ReplayMusic()
         {
-            Control[] buttons = new Control[6];
-            int arraylocation = 0;
-            foreach (Control c in musicArea2.Controls)
-            {
-                if (c.Name.Contains("Button"))
-                {
-                    buttons.SetValue(c, arraylocation);
-                    arraylocation++;
-                }
-            }
-
-            buttons[0].MouseClick += new MouseEventHandler(this.PlayButton_Click);
+            this.winmp.controls.currentPosition = 0;
         }
 
         /// <summary>
@@ -331,7 +379,7 @@ namespace MusicApplication
         /// </summary>
         /// <param name="sender">The sender object</param>
         /// <param name="e">The sender context</param>
-        private void PlayButton_Click(object sender, MouseEventArgs e)
+        private void PlayButton_Click(object sender, EventArgs e)
         {
             this.PlaySong();
         }
@@ -341,9 +389,9 @@ namespace MusicApplication
         /// </summary>
         /// <param name="sender">The sender object</param>
         /// <param name="e">The sender context</param>
-        private void PauseButton_Click(object sender, MouseEventArgs e)
+        private void PauseButton_Click(object sender, EventArgs e)
         {
-            PauseMusic();
+            this.PauseMusic();
         }
 
         /// <summary>
@@ -351,9 +399,9 @@ namespace MusicApplication
         /// </summary>
         /// <param name="sender">The sender object</param>
         /// <param name="e">The sender context</param>
-        private void StopButton_Click(object sender, MouseEventArgs e)
+        private void StopButton_Click(object sender, EventArgs e)
         {
-            StopMusic();
+            this.StopMusic();
         }
 
         /// <summary>
@@ -361,8 +409,9 @@ namespace MusicApplication
         /// </summary>
         /// <param name="sender">The sender object</param>
         /// <param name="e">The sender context</param>
-        private void ReplayButton_Click(object sender, MouseEventArgs e)
+        private void ReplayButton_Click(object sender, EventArgs e)
         {
+            this.ReplayMusic();
         }
 
         /// <summary>
@@ -370,8 +419,9 @@ namespace MusicApplication
         /// </summary>
         /// <param name="sender">The sender object</param>
         /// <param name="e">The sender context</param>
-        private void ShuffleButton_Click(object sender, MouseEventArgs e)
+        private void ShuffleButton_Click(object sender, EventArgs e)
         {
+
         }
 
         /// <summary>
@@ -379,7 +429,7 @@ namespace MusicApplication
         /// </summary>
         /// <param name="sender">The sender object</param>
         /// <param name="e">The sender context</param>
-        private void RewindButton_Click(object sender, MouseEventArgs e)
+        private void RewindButton_Click(object sender, EventArgs e)
         {
         }
     }
