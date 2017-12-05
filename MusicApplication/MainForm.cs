@@ -39,7 +39,7 @@ namespace MusicApplication
             this.Timer.Tick += this.Timer_Tick;
             this.UpdateTable();
             this.AssignClickMethods();
-            this.winmp.PlayStateChange += Winmp_PlayStateChange;
+            this.winmp.PlayStateChange += this.Winmp_PlayStateChange;
         }
 
         /// <summary>
@@ -53,7 +53,7 @@ namespace MusicApplication
         private Timer Timer { get; set; }
 
         /// <summary>
-        /// Gets or sets the status of the shuffle button
+        /// Gets or sets a value indicating whether the status of the shuffle button
         /// </summary>
         private bool IsShuffle { get; set; }
 
@@ -65,16 +65,16 @@ namespace MusicApplication
         /// <summary>
         /// Goes to a random next song when one finishes
         /// </summary>
-        /// <param name="Result"></param>
-        private void Winmp_PlayStateChange(int Result)
+        /// <param name="result">The index of the next song to play</param>
+        private void Winmp_PlayStateChange(int result)
         {
-            if (IsShuffle && winmp.playlistCollection == null)
+            if (this.IsShuffle && this.winmp.playlistCollection == null)
             {
                 if (this.winmp.playState == WMPPlayState.wmppsMediaEnded)
                 {
-                    Random Randomizer = new Random();
-                    int RandomSong = Randomizer.Next(0, objectListView.GetItemCount());
-                    LocalAudioItem rowItem = (LocalAudioItem)objectListView.GetItem(RandomSong).RowObject;
+                    Random randomizer = new Random();
+                    int randomSong = randomizer.Next(0, objectListView.GetItemCount());
+                    LocalAudioItem rowItem = (LocalAudioItem)objectListView.GetItem(randomSong).RowObject;
                 }
             }
         }
@@ -84,16 +84,16 @@ namespace MusicApplication
         /// </summary>
         private void AssignClickMethods()
         {
-            Control[] AreaButtons = new Control[6];
+            Control[] areaButtons = new Control[6];
 
-            AreaButtons[0] = this.musicArea2.Controls.Find("PauseButton", false)[0];
-            AreaButtons[1] = this.musicArea2.Controls.Find("PlayButton", false)[0];
-            AreaButtons[2] = this.musicArea2.Controls.Find("StopButton", false)[0];
-            AreaButtons[3] = this.musicArea2.Controls.Find("PlayAllButton", false)[0];
-            AreaButtons[4] = this.musicArea2.Controls.Find("ShuffleButton", false)[0];
-            AreaButtons[5] = this.musicArea2.Controls.Find("ReplayButton", false)[0];
+            areaButtons[0] = this.musicArea2.Controls.Find("PauseButton", false)[0];
+            areaButtons[1] = this.musicArea2.Controls.Find("PlayButton", false)[0];
+            areaButtons[2] = this.musicArea2.Controls.Find("StopButton", false)[0];
+            areaButtons[3] = this.musicArea2.Controls.Find("PlayAllButton", false)[0];
+            areaButtons[4] = this.musicArea2.Controls.Find("ShuffleButton", false)[0];
+            areaButtons[5] = this.musicArea2.Controls.Find("ReplayButton", false)[0];
 
-            foreach (Control btn in AreaButtons)
+            foreach (Control btn in areaButtons)
             {
                 if (btn == null)
                 {
@@ -101,12 +101,12 @@ namespace MusicApplication
                 }
             }
 
-            AreaButtons[0].Click += PauseButton_Click;
-            AreaButtons[1].Click += PlayButton_Click;
-            AreaButtons[2].Click += StopButton_Click;
-            AreaButtons[3].Click += ReplayButton_Click;
-            AreaButtons[4].Click += ShuffleButton_Click;
-            AreaButtons[5].Click += RewindButton_Click;
+            areaButtons[0].Click += this.PauseButton_Click;
+            areaButtons[1].Click += this.PlayButton_Click;
+            areaButtons[2].Click += this.StopButton_Click;
+            areaButtons[3].Click += this.ReplayButton_Click;
+            areaButtons[4].Click += this.ShuffleButton_Click;
+            areaButtons[5].Click += this.RewindButton_Click;
         }
 
         /// <summary>
@@ -329,12 +329,17 @@ namespace MusicApplication
                 switch (rowItem.ReaderFileExtension)
                 {
                     case ".wmv":
-                        PlaySong(startTime, rowItem);
+                        this.PlaySong(startTime, rowItem);
                         break;
                 }
             }
         }
 
+        /// <summary>
+        /// Plays the selected song at the designated time
+        /// </summary>
+        /// <param name="startTime">The time to start playing the song at</param>
+        /// <param name="rowItem">The row item to be played</param>
         private void PlaySong(double startTime, LocalAudioItem rowItem)
         {
             this.winmp.URL = rowItem.ReaderFilePath;
@@ -369,6 +374,9 @@ namespace MusicApplication
             this.winmp.controls.pause();
         }
 
+        /// <summary>
+        /// Resets the playtime to 0
+        /// </summary>
         private void ReplayMusic()
         {
             this.winmp.controls.currentPosition = 0;
@@ -421,7 +429,6 @@ namespace MusicApplication
         /// <param name="e">The sender context</param>
         private void ShuffleButton_Click(object sender, EventArgs e)
         {
-
         }
 
         /// <summary>
