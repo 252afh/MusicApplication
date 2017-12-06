@@ -10,6 +10,7 @@ namespace MusicApplication
     using System.Windows.Forms;
     using BrightIdeasSoftware;
     using MusicApplication.Enums;
+    using MusicApplication.Helpers;
     using WMPLib;
 
     /// <summary>
@@ -20,12 +21,17 @@ namespace MusicApplication
         /// <summary>
         /// The database connection
         /// </summary>
-        private DatabaseConn databaseConnection;
+        private DatabaseConnHelper databaseConnection;
 
         /// <summary>
         /// An instance of the <see cref="WindowsMediaPlayer"/> class
         /// </summary>
         private WindowsMediaPlayer winmp;
+
+        /// <summary>
+        /// An instance of the <see cref="localMusicActionHelper"/> class
+        /// </summary>
+        private LocalMusicActionHelper localMusicActionHelper;
 
         /// <summary>
         /// Initialises a new instance of the <see cref="MainForm"/> class
@@ -34,7 +40,8 @@ namespace MusicApplication
         {
             this.InitializeComponent();
             this.winmp = new WindowsMediaPlayer();
-            this.databaseConnection = new DatabaseConn();
+            this.databaseConnection = new DatabaseConnHelper();
+            this.localMusicActionHelper = new LocalMusicActionHelper();
             this.Timer = new Timer();
             this.Timer.Tick += this.Timer_Tick;
             this.UpdateTable();
@@ -63,19 +70,31 @@ namespace MusicApplication
         private int NextSongIndex { get; set; }
 
         /// <summary>
-        /// Goes to a random next song when one finishes
+        /// Gets or sets the count of the object list view
         /// </summary>
-        /// <param name="result">The index of the next song to play</param>
-        private void Winmp_PlayStateChange(int result)
+        private int ListCount
         {
-            if (this.IsShuffle && this.winmp.playlistCollection == null)
+            get
             {
-                if (this.winmp.playState == WMPPlayState.wmppsMediaEnded)
-                {
-                    Random randomizer = new Random();
-                    int randomSong = randomizer.Next(0, objectListView.GetItemCount());
-                    LocalAudioItem rowItem = (LocalAudioItem)objectListView.GetItem(randomSong).RowObject;
-                }
+                return this.ListCount;
+            }
+
+            set
+            {
+                this.ListCount = objectListView.GetItemCount();
+            }
+        }
+
+        /// <summary>
+        /// Gets a new <see cref="LocalAudioItem"/> to play based on a random integer index
+        /// </summary>
+        /// <param name="newState">An integer representing the enum of the play state</param>
+        private void Winmp_PlayStateChange(int newState)
+        {
+            if (this.IsShuffle)
+            {
+                int toPlay = this.localMusicActionHelper.Winmp_PlayStateChange(newState, this.IsShuffle, this.winmp, this.ListCount);
+                LocalAudioItem rowItem = (LocalAudioItem)objectListView.GetItem(toPlay).RowObject;
             }
         }
 
@@ -230,40 +249,7 @@ namespace MusicApplication
         /// <param name="e">The context of the button being pressed</param>
         private void AddToLocalLibBtn_Click(object sender, EventArgs e)
         {
-            openFileDialogLocal.InitialDirectory = "c://";
-            openFileDialogLocal.Filter = "Allowed types (.wmv,.mp3)|*.wmv;*.mp3|Video (.wmv)|*.wmv|Music(.mp3)|*.mp3|ALL Files(*.*)|*.*";
-            openFileDialogLocal.FilterIndex = 1;
-            DialogResult result = openFileDialogLocal.ShowDialog();
-            string filePath = openFileDialogLocal.FileName;
-            string title = Path.GetFileNameWithoutExtension(filePath);
-            string artist = null;
-            string album = null;
-            string playlist = null;
-            int length = 0;
-            string genre = null;
-            int plays = 0;
-            string extension = Path.GetExtension(filePath);
-            switch (extension)
-            {
-                case ".wmv":
-                    IWMPMedia mediainfo = this.winmp.newMedia(filePath);
-                    length = (int)Math.Ceiling(mediainfo.duration);
-                    string addResult = this.databaseConnection.AddSongToTable(title, artist = null, album = null, playlist = null, length, genre = null, plays, extension, filePath);
-                    if (!string.IsNullOrEmpty(addResult))
-                    {
-                        MessageBox.Show(addResult);
-                    }
-                    else
-                    {
-                        UpdateTable();
-                    }
-
-                    break;
-                default:
-                    break;
-            }
-
-            openFileDialogLocal.Dispose();
+            localMusicActionHelper.AddSongToLocal();
         }
 
         /// <summary>

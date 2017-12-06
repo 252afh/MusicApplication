@@ -1,4 +1,4 @@
-﻿// <copyright file="DatabaseConn.cs" company="Emoore">
+﻿// <copyright file="DatabaseConnHelper.cs" company="Emoore">
 //   Copyright © EMoore. All rights reserved.
 // </copyright>
 
@@ -12,7 +12,7 @@ namespace MusicApplication
     /// <summary>
     /// Handles the connections to the SQLite database
     /// </summary>
-    public class DatabaseConn
+    public class DatabaseConnHelper
     {
         /// <summary>
         /// Connection to the database
@@ -25,9 +25,9 @@ namespace MusicApplication
         private static ArrayList itemList;
 
         /// <summary>
-        /// Initialises a new instance of the <see cref="DatabaseConn"/> class
+        /// Initialises a new instance of the <see cref="DatabaseConnHelper"/> class
         /// </summary>
-        public DatabaseConn()
+        public DatabaseConnHelper()
         {
             itemList = new ArrayList();
             if (!File.Exists("./LocalDatabase.sqlite3"))

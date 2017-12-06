@@ -309,7 +309,7 @@ namespace MusicApplication
         private BrightIdeasSoftware.OLVColumn FilePathObject;
         private BrightIdeasSoftware.OLVColumn KeyObject;
         private BrightIdeasSoftware.OLVColumn AlbumObject;
-        private Stopwatch songTimer;
+        //private Stopwatch songTimer;
         private MusicPlayArea.MusicArea musicArea2;
     }
 }

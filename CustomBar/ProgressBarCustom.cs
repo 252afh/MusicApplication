@@ -71,6 +71,11 @@ namespace CustomBar
 
             set
             {
+                if (value == 0)
+                {
+                    value = 1;
+                }
+
                 this.songLength = value;
                 this.Invalidate();
             }
